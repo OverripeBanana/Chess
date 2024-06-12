@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://biemth6im1ve3"]
+
+[ext_resource type="Script" path="res://scripts/piece.gd" id="1_egbwi"]
+[ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_breja"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0hum"]
+size = Vector2(30.4995, 765.391)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66cu0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fysir"]
+radius = 33.0606
+
+[node name="White Rook" type="Node2D"]
+script = ExtResource("1_egbwi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(11, -6)
+scale = Vector2(0.176136, 0.176136)
+texture = ExtResource("2_breja")
+region_enabled = true
+region_rect = Rect2(1760, 0, 440, 440)
+
+[node name="Movement" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement"]
+position = Vector2(-489, 0)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_g0hum")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Movement"]
+position = Vector2(504, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_g0hum")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Movement"]
+position = Vector2(0, 472.305)
+shape = SubResource("RectangleShape2D_g0hum")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Movement"]
+position = Vector2(0, -491)
+shape = SubResource("RectangleShape2D_g0hum")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Movement"]
+shape = SubResource("RectangleShape2D_66cu0")
+
+[node name="Mousebox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_fysir")

@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://bljwfi6fsg3fi"]
+
+[ext_resource type="Script" path="res://scripts/piece.gd" id="1_wk6fk"]
+[ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_wlro6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0hum"]
+size = Vector2(30.4995, 765.391)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66cu0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m023l"]
+size = Vector2(12.0208, 765.391)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fysir"]
+radius = 33.0606
+
+[node name="White Queen" type="Node2D"]
+script = ExtResource("1_wk6fk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, 0)
+scale = Vector2(0.176136, 0.176136)
+texture = ExtResource("2_wlro6")
+region_enabled = true
+region_rect = Rect2(440, 0, 440, 440)
+
+[node name="Movement" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement"]
+position = Vector2(-489, 0)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_g0hum")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Movement"]
+position = Vector2(504, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_g0hum")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Movement"]
+position = Vector2(0, 472.305)
+shape = SubResource("RectangleShape2D_g0hum")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Movement"]
+position = Vector2(0, -491)
+shape = SubResource("RectangleShape2D_g0hum")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Movement"]
+shape = SubResource("RectangleShape2D_66cu0")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Movement"]
+position = Vector2(-337.75, -326.25)
+rotation = -0.785402
+shape = SubResource("RectangleShape2D_m023l")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Movement"]
+position = Vector2(321, 324)
+rotation = 2.3562
+shape = SubResource("RectangleShape2D_m023l")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Movement"]
+position = Vector2(-320, 322)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_m023l")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Movement"]
+position = Vector2(336, -329)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_m023l")
+
+[node name="Mousebox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_fysir")
