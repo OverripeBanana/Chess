@@ -26,7 +26,7 @@ position = Vector2(750, 750)
 position = Vector2(550, 750)
 
 [node name="White Queen" parent="Pieces/White" instance=ExtResource("6_v47w3")]
-position = Vector2(350, 650)
+position = Vector2(350, 750)
 
 [node name="White Knight" parent="Pieces/White" instance=ExtResource("7_2ra00")]
 position = Vector2(650, 750)
