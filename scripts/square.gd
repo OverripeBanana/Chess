@@ -13,7 +13,7 @@ func _ready():
 	else:
 		myColor = SquareColor.WHITE
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	var overlapping_areas = get_overlapping_areas()
 	if len(overlapping_areas) > 0:
 		for value in overlapping_areas:

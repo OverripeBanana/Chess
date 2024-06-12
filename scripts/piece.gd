@@ -13,11 +13,11 @@ func _ready():
 	#position = searchForClosestSquare().position
 	movement.set_as_top_level(false)
 	
-func _process(delta):
+func _process(_delta):
 	if selected:
 		followMouse()
 
-func _on_mousebox_input_event(viewport, event, shape_idx):
+func _on_mousebox_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.pressed:
 			selected = true
