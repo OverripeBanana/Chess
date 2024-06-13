@@ -7,7 +7,7 @@
 size = Vector2(100, 100)
 
 [node name="White Square" type="Area2D"]
-collision_mask = 11
+collision_mask = 3
 script = ExtResource("1_c27qu")
 
 [node name="ColorRect" type="ColorRect" parent="."]

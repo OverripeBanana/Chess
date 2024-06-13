@@ -26,7 +26,6 @@ region_rect = Rect2(1320, 0, 440, 440)
 
 [node name="Movement" type="Area2D" parent="."]
 visible = false
-collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement"]
 shape = SubResource("RectangleShape2D_y0e3d")

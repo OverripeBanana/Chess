@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cenp11ktwwgf0"]
+[gd_scene load_steps=6 format=3 uid="uid://cenp11ktwwgf0"]
 
 [ext_resource type="Script" path="res://scripts/piece.gd" id="1_pbb16"]
 [ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_uscdb"]
@@ -10,8 +10,6 @@ size = Vector2(18.75, 159.125)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fysir"]
 radius = 30.0666
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv2bc"]
 
 [node name="White King" type="Node2D"]
 script = ExtResource("1_pbb16")
@@ -25,7 +23,6 @@ region_rect = Rect2(0, 0, 440, 440)
 
 [node name="Movement" type="Area2D" parent="."]
 visible = false
-collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement"]
 position = Vector2(-70, 0)
@@ -55,10 +52,3 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_fysir")
-
-[node name="Rest" type="Area2D" parent="."]
-z_index = -2
-collision_layer = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rest"]
-shape = SubResource("RectangleShape2D_hv2bc")
