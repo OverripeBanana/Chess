@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://y4t6oply2ll7" path="res://scenes/squares/black_square.tscn" id="2_cmw1a"]
 
 [node name="Board" type="Node2D"]
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
 
 [node name="White Square" parent="." instance=ExtResource("1_bh12w")]
 position = Vector2(50, 50)

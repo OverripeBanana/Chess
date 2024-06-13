@@ -23,6 +23,7 @@ region_rect = Rect2(1760, 0, 440, 440)
 
 [node name="Movement" type="Area2D" parent="."]
 visible = false
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement"]
 position = Vector2(-489, 0)

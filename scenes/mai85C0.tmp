@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cklhii31drk7p"]
+[gd_scene load_steps=3 format=3 uid="uid://cklhii31drk7p"]
 
 [ext_resource type="PackedScene" uid="uid://c4ud5ilna8ghg" path="res://scenes/board.tscn" id="1_jtkre"]
-[ext_resource type="PackedScene" uid="uid://cenp11ktwwgf0" path="res://scenes/pieces/white_king.tscn" id="3_n5slp"]
 [ext_resource type="PackedScene" uid="uid://bljwfi6fsg3fi" path="res://scenes/pieces/white_queen.tscn" id="6_v47w3"]
 
 [node name="Main" type="Node2D"]
@@ -14,6 +13,3 @@
 
 [node name="White Queen" parent="Pieces/White" instance=ExtResource("6_v47w3")]
 position = Vector2(350, 750)
-
-[node name="White King" parent="." instance=ExtResource("3_n5slp")]
-position = Vector2(452, 754)
