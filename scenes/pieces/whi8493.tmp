@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bljwfi6fsg3fi"]
+[gd_scene load_steps=4 format=3 uid="uid://bljwfi6fsg3fi"]
 
 [ext_resource type="Script" path="res://scripts/queen.gd" id="1_ighif"]
 [ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_wlro6"]
-[ext_resource type="Script" path="res://scripts/Move Components/horizontal_movement.gd" id="3_u7ek4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fysir"]
 radius = 33.0606
@@ -24,7 +23,3 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
 position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_fysir")
-
-[node name="HorizontalMovement" type="Node2D" parent="."]
-script = ExtResource("3_u7ek4")
-maxRayDistance = 800

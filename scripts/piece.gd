@@ -2,35 +2,18 @@ extends Node2D
 
 class_name Piece
 
-enum color {WHITE, BLACK}
-var selected : bool = false
 @onready var mousebox : Area2D = $Mousebox
-@onready var movement : Area2D = $Movement
 
-func _ready():
+func initPiece():
 	mousebox.input_event.connect(_on_mousebox_input_event)
-	disableMovementBox()
-	#position = searchForClosestSquare().position
-	movement.set_as_top_level(false)
 	
-func _process(_delta):
-	if selected:
-		followMouse()
-
 func _on_mousebox_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.pressed:
-			selected = true
-			enableMovementBox()
-			freezeMovementBox()
-		elif !event.pressed:
-			selected = false
-			disableMovementBox()
-			snapToClosestSquare()
-			unfreezeMovementBox()
+			followMouse()
 			
 func searchForClosestSquare():
-	var legal_squares = movement.get_overlapping_areas()
+	var legal_squares = []
 	if len(legal_squares) != 0:
 		var closest_square = legal_squares[0]
 		for value in legal_squares:
@@ -40,19 +23,6 @@ func searchForClosestSquare():
 	
 func snapToClosestSquare():
 	position = searchForClosestSquare().position
-
-func freezeMovementBox():
-	movement.set_as_top_level(true)
-	movement.position = position
-	
-func unfreezeMovementBox():
-	movement.set_as_top_level(false)
-	
-func disableMovementBox():
-	movement.set_collision_layer_value(1, false)
-
-func enableMovementBox():
-	movement.set_collision_layer_value(1, true)
 	
 func followMouse():
 	position = get_global_mouse_position()
