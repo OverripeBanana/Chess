@@ -17,7 +17,7 @@ func getAllObjects():
 		#ray.force_raycast_update()
 		if ray.is_colliding():
 			var obj = ray.get_collider()
-			if obj.collision_layer != 2:
+			if obj != null and obj.collision_layer != 2:
 				ray.add_exception(obj)
 			objects_collide.append(obj)
 

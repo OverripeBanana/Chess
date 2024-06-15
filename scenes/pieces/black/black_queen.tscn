@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqu8uqp4g65j"]
+
+[ext_resource type="Script" path="res://scripts/Pieces/queen.gd" id="1_21m5k"]
+[ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_hpael"]
+[ext_resource type="Script" path="res://scripts/Move Components/diagonal_movement.gd" id="3_3yawe"]
+[ext_resource type="Script" path="res://scripts/Move Components/horizontal_movement.gd" id="4_l4stj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fysir"]
+radius = 41.1096
+
+[node name="Black Queen" type="Node2D"]
+rotation = 0.0071639
+script = ExtResource("1_21m5k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, 0)
+scale = Vector2(0.176136, 0.176136)
+texture = ExtResource("2_hpael")
+region_enabled = true
+region_rect = Rect2(440, 440, 440, 440)
+
+[node name="Mousebox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
+scale = Vector2(1.02, 1.02)
+shape = SubResource("CircleShape2D_fysir")
+
+[node name="Movement" type="Node2D" parent="."]
+
+[node name="DiagonalMovement" type="Node2D" parent="Movement"]
+script = ExtResource("3_3yawe")
+maxRayDistance = 800
+
+[node name="HorizontalMovement" type="Node2D" parent="Movement"]
+script = ExtResource("4_l4stj")
+maxRayDistance = 800

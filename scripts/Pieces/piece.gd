@@ -2,8 +2,10 @@ extends Node2D
 
 class_name Piece
 
+@export var color : Piece_Color
 @onready var movement = $Movement
 @onready var mousebox : Area2D = $Mousebox
+enum Piece_Color {BLACK, WHITE}
 var selected = false
 var clicked = false
 var released = false
@@ -27,6 +29,8 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 			clicked = true
 			released = false
 		if !event.pressed and clicked:
+			if isOverlappingOppositeColor():
+				capture()
 			clicked = false
 			selected = false
 			released = true
@@ -60,4 +64,19 @@ func parentRayCast():
 	
 func followMouse():
 	position = get_global_mouse_position()
+	
+func capture():
+
+	var piece = mousebox.get_overlapping_areas()[0].get_parent()
+	mostRecentPos = piece.mostRecentPos
+	piece.queue_free()
+	
+func isOverlappingOppositeColor():
+	var overlapping_areas = mousebox.get_overlapping_areas()
+	if len(overlapping_areas) > 0:
+		var overlapping_piece =  overlapping_areas[0].get_parent()
+		return overlapping_piece.color != self.color
+	else:
+		return false
+
 
