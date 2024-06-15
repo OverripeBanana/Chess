@@ -5,7 +5,7 @@ extends Piece
 
 func _ready():
 	initPiece()
-	
+
 func _process(_delta):
 	if released:
 		horizontal_movement.objects_collide.clear()
@@ -17,6 +17,3 @@ func _process(_delta):
 
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
 	move()
-	
-	
-
