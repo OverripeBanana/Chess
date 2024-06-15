@@ -8,7 +8,10 @@ var left = RayCast2D.new()
 var right = RayCast2D.new()
 
 func _ready():
-	directions = [up, down, left, right]
+	directions.append(up)
+	directions.append(down)
+	directions.append(left)
+	directions.append(right)
 	initRays()
 	castRays(maxRayDistance)
 	
@@ -21,12 +24,11 @@ func castRays(maxDistance):
 	add_child(left)
 	add_child(right)
 	up.target_position = Vector2.UP * maxDistance
-	up.position.y -= DISTANCE_FROM_PIECE
 	down.target_position = Vector2.DOWN * maxDistance
-	down.position.y += DISTANCE_FROM_PIECE	
 	left.target_position = Vector2.LEFT * maxDistance	
-	left.position.x -= DISTANCE_FROM_PIECE
 	right.target_position = Vector2.RIGHT * maxDistance
+	up.position.y -= DISTANCE_FROM_PIECE
+	down.position.y += DISTANCE_FROM_PIECE	
+	left.position.x -= DISTANCE_FROM_PIECE
 	right.position.x += DISTANCE_FROM_PIECE	
-
 

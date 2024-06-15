@@ -12,4 +12,4 @@
 [node name="White" type="Node2D" parent="Pieces"]
 
 [node name="White Queen" parent="Pieces/White" instance=ExtResource("6_v47w3")]
-position = Vector2(350, 650)
+position = Vector2(350, 550)
