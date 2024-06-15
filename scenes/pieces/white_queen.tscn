@@ -20,16 +20,17 @@ region_rect = Rect2(440, 0, 440, 440)
 
 [node name="Mousebox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
 position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_fysir")
 
-[node name="DiagonalMovement" type="Node2D" parent="."]
+[node name="Movement" type="Node2D" parent="."]
+
+[node name="DiagonalMovement" type="Node2D" parent="Movement"]
 script = ExtResource("4_52c5w")
 maxRayDistance = 800
 
-[node name="HorizontalMovement" type="Node2D" parent="."]
+[node name="HorizontalMovement" type="Node2D" parent="Movement"]
 script = ExtResource("3_u7ek4")
 maxRayDistance = 800

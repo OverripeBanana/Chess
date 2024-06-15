@@ -18,8 +18,6 @@ func getAllObjects():
 		if ray.is_colliding():
 			var obj = ray.get_collider()
 			ray.add_exception(obj)
-			obj.legal()
 			objects_collide.append(obj)
-			
 
 			
