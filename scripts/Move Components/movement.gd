@@ -13,11 +13,12 @@ func initRays():
 		ray.collision_mask = 1
 		
 func getAllObjects():
-	for ray in directions:
-		ray.force_raycast_update()
+	for ray in directions:	
+		#ray.force_raycast_update()
 		if ray.is_colliding():
 			var obj = ray.get_collider()
 			ray.add_exception(obj)
 			objects_collide.append(obj)
+
 
 			

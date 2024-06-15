@@ -7,10 +7,16 @@ func _ready():
 	initPiece()
 	
 func _process(_delta):
-	print(released)
 	if released:
 		horizontal_movement.objects_collide.clear()
 		diagonal_movement.objects_collide.clear()
-	move()
+		for ray in horizontal_movement.directions:
+			ray.clear_exceptions()
+		for ray in diagonal_movement.directions:
+			ray.clear_exceptions()	
+
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
+	move()
+	
+	
 
