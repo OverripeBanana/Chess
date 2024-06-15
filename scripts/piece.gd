@@ -3,6 +3,7 @@ extends Node2D
 class_name Piece
 
 @onready var mousebox : Area2D = $Mousebox
+var selected = false
 
 func initPiece():
 	mousebox.input_event.connect(_on_mousebox_input_event)
@@ -10,7 +11,9 @@ func initPiece():
 func _on_mousebox_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.pressed:
-			followMouse()
+			selected = true
+		else:
+			selected = false
 			
 func searchForClosestSquare():
 	var legal_squares = []

@@ -191,3 +191,12 @@ position = Vector2(650, 550)
 
 [node name="White Square32" parent="." instance=ExtResource("1_bh12w")]
 position = Vector2(750, 550)
+
+[node name="White Square22" parent="." instance=ExtResource("1_bh12w")]
+position = Vector2(250, 650)
+
+[node name="White Square33" parent="." instance=ExtResource("1_bh12w")]
+position = Vector2(350, 750)
+
+[node name="Black Square18" parent="." instance=ExtResource("2_cmw1a")]
+position = Vector2(350, 650)
