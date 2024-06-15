@@ -14,6 +14,5 @@ func _process(_delta):
 			ray.clear_exceptions()
 		for ray in diagonal_movement.directions:
 			ray.clear_exceptions()	
-
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
 	move()

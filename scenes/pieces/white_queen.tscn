@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/Move Components/diagonal_movement.gd" id="4_52c5w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fysir"]
-radius = 33.0606
+radius = 41.1096
 
 [node name="White Queen" type="Node2D"]
 script = ExtResource("1_v14ic")
@@ -22,7 +22,7 @@ region_rect = Rect2(440, 0, 440, 440)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
-position = Vector2(-1, -1)
+scale = Vector2(1.02, 1.02)
 shape = SubResource("CircleShape2D_fysir")
 
 [node name="Movement" type="Node2D" parent="."]
