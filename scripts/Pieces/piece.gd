@@ -22,32 +22,36 @@ func move():
 		followMouse()
 		
 func _on_mousebox_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton:
-		if event.pressed:
-			unparentRayCast()
-			selected = true
-			clicked = true
-			released = false
-		if !event.pressed and clicked:
-			if isOverlappingOppositeColor():
-				capture()
-			clicked = false
-			selected = false
-			released = true
-			snapToClosestSquare()
-			mostRecentPos = global_position
-			parentRayCast()
-			
+		if event is InputEventMouseButton:
+			if event.pressed and self.color == TurnManager.currentTurn:
+				unparentRayCast()
+				selected = true
+				clicked = true
+				released = false
+			if !event.pressed and clicked:
+				if isOverlappingOppositeColor():
+					capture()
+				clicked = false
+				selected = false
+				released = true
+				snapToClosestSquare()
+				mostRecentPos = global_position
+				parentRayCast()
+				
+				
 func searchForClosestSquare():
 	#now returns a position, not an Area2D
 	if len(legal_squares) != 0:
 		var closest_square = mostRecentPos
 		for value in legal_squares:
-			if position.distance_squared_to(value.position) < position.distance_squared_to(closest_square):
-				closest_square = value.position
+			if is_instance_valid(value):
+				if position.distance_squared_to(value.position) < position.distance_squared_to(closest_square):
+					closest_square = value.position
 		if position.distance_squared_to(closest_square) > NOW_DATS_STUPID:
 			return mostRecentPos
-		return closest_square
+		else:
+			TurnManager.switchTurn()
+			return closest_square
 	else:
 		return mostRecentPos
 		
@@ -66,7 +70,6 @@ func followMouse():
 	position = get_global_mouse_position()
 	
 func capture():
-
 	var piece = mousebox.get_overlapping_areas()[0].get_parent()
 	mostRecentPos = piece.mostRecentPos
 	piece.queue_free()
