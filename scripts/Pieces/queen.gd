@@ -10,6 +10,7 @@ func _ready():
 	
 func _process(_delta):
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
+	updateProtect()
 	move()
 	
 	
