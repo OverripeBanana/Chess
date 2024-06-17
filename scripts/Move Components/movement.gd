@@ -20,6 +20,8 @@ func getAllObjects():
 			var obj = ray.get_collider()
 			if obj != null:
 				if obj.collision_layer != 2:
+					obj.protected = self.get_parent().get_parent().color
+					print(obj.protected)
 					ray.add_exception(obj)
 			objects_collide.append(obj)
 			

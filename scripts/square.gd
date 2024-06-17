@@ -4,7 +4,7 @@ class_name Square
 
 #variables
 @onready var circle = $Circle
-var protected
+var protected : ChessColor.chess_color
 #variables
 		
 func legal():

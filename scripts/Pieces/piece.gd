@@ -2,10 +2,9 @@ extends Node2D
 
 class_name Piece
 
-@export var color : Piece_Color
+@export var color : ChessColor.chess_color
 @onready var movement = $Movement
 @onready var mousebox : Area2D = $Mousebox
-enum Piece_Color {BLACK, WHITE}
 var selected = false
 var clicked = false
 var released = false
