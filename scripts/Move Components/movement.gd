@@ -20,8 +20,19 @@ func getAllObjects():
 			var obj = ray.get_collider()
 			if obj != null:
 				if obj.collision_layer != 2:
-					obj.protected = self.get_parent().get_parent().color
-					print(obj.protected)
 					ray.add_exception(obj)
+					protect(obj)
 			objects_collide.append(obj)
-			
+
+func protect(obj):
+	var myColor = self.get_parent().get_parent().color
+	if myColor == ChessColor.chess_color.BLACK:
+		obj.protectedByBlack = true
+	elif myColor == ChessColor.chess_color.WHITE:
+		obj.protectedByWhite = true
+
+func clearProtect():
+	for obj in objects_collide:
+		if obj.collision_layer == 1:
+			obj.protectedByBlack = false
+			obj.protectedByWhite = false
