@@ -1,5 +1,7 @@
 extends Piece
 
+class_name Queen
+
 @onready var diagonal_movement = $Movement/DiagonalMovement
 @onready var horizontal_movement = $Movement/HorizontalMovement
 

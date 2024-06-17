@@ -1,8 +1,10 @@
 extends Area2D
 
+class_name Square
+
 #variables
-@onready var rect : ColorRect = $ColorRect
 @onready var circle = $Circle
+var protected
 #variables
 		
 func legal():

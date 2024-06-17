@@ -10,16 +10,16 @@ var DISTANCE_FROM_PIECE = 50
 func initRays():
 	for ray in directions:
 		ray.collide_with_areas = true
-		ray.collision_mask = 3
+		ray.set_collision_mask_value(1, true)
+		ray.set_collision_mask_value(2, true)
 		
 func getAllObjects():
 	for ray in directions:	
-		#ray.force_raycast_update()
 		if ray.is_colliding():
+			#ray.force_raycast_update()
 			var obj = ray.get_collider()
-			if obj != null and obj.collision_layer != 2:
-				ray.add_exception(obj)
+			if obj != null:
+				if obj.collision_layer != 2:
+					ray.add_exception(obj)
 			objects_collide.append(obj)
-
-
 			
