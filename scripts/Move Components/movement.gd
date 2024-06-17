@@ -31,8 +31,10 @@ func protect(obj):
 	elif myColor == ChessColor.chess_color.WHITE:
 		obj.protectedByWhite = true
 
-func clearProtect():
+func clearProtect(piece):
 	for obj in objects_collide:
 		if obj.collision_layer == 1:
-			obj.protectedByBlack = false
-			obj.protectedByWhite = false
+			if piece.color == ChessColor.chess_color.BLACK:
+				obj.protectedByBlack = false
+			elif piece.color == ChessColor.chess_color.WHITE:
+				obj.protectedByWhite = false

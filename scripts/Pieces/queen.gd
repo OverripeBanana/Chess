@@ -9,7 +9,6 @@ func _ready():
 	initPiece()
 	
 func _process(_delta):
-	print(legal_squares)
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
 	move()
 	

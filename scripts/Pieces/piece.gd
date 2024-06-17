@@ -15,7 +15,6 @@ var NOW_DATS_STUPID = 4500
 func initPiece():
 	mousebox.input_event.connect(_on_mousebox_input_event)
 	mostRecentPos = global_position
-	getAllObjects()
 	
 func move():
 	if selected:
@@ -24,7 +23,6 @@ func move():
 func _on_mousebox_input_event(_viewport, event, _shape_idx):
 		if event is InputEventMouseButton:
 			if event.pressed and self.color == TurnManager.currentTurn:
-				getAllObjects()
 				unparentRayCast()
 				selected = true
 				clicked = true
@@ -39,7 +37,6 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				mostRecentPos = global_position
 				parentRayCast()
 				resetMovementComponents()
-				getAllObjects()
 				
 func searchForClosestSquare():
 	#now returns a position, not an Area2D
@@ -87,22 +84,14 @@ func isOverlappingOppositeColor():
 func resetMovementComponents():
 	if $Movement/HorizontalMovement != null:
 		var horizontal_movement = $Movement/HorizontalMovement
-		horizontal_movement.clearProtect()
+		horizontal_movement.clearProtect(self)
 		horizontal_movement.objects_collide.clear()
 		for ray in horizontal_movement.directions:
 			ray.clear_exceptions()
 	if $Movement/DiagonalMovement != null:
 		var diagonal_movement = $Movement/DiagonalMovement
-		diagonal_movement.clearProtect()
+		diagonal_movement.clearProtect(self)
 		diagonal_movement.objects_collide.clear()
 		for ray in diagonal_movement.directions:
 			ray.clear_exceptions()
 
-func getAllObjects():
-	print("getting obj")
-	if $Movement/HorizontalMovement != null:
-		var horizontal_movement = $Movement/HorizontalMovement
-		horizontal_movement.getAllObjects()
-	if $Movement/DiagonalMovement != null:
-		var diagonal_movement = $Movement/DiagonalMovement
-		diagonal_movement.getAllObjects()
