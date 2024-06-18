@@ -8,7 +8,21 @@ class_name King
 func _ready():
 	initPiece()
 
+
 func _process(_delta):
+	if released:
+		setMostRecentSquare()
+	#isInCheck()
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
 	updateProtect()
 	move()
+
+func isInCheck():
+	if self.color == ChessColor.chess_color.BLACK:
+		if mostRecentSquare.protectedByWhite:
+			Check.blackInCheck = true
+	elif self.color == ChessColor.chess_color.WHITE:
+		if mostRecentSquare.protectedByBlack:
+			Check.whiteInCheck = true
+
+

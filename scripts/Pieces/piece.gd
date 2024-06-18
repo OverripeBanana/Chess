@@ -11,6 +11,7 @@ var released = false
 var mostRecentPos : Vector2
 var legal_squares = []
 var NOW_DATS_STUPID = 4500
+var mostRecentSquare
 
 func initPiece():
 	mousebox.input_event.connect(_on_mousebox_input_event)
@@ -34,6 +35,7 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				selected = false
 				released = true
 				snapToClosestSquare()
+
 				mostRecentPos = global_position
 				parentRayCast()
 				resetMovementComponents()
@@ -49,7 +51,8 @@ func searchForClosestSquare():
 		if position.distance_squared_to(closest_square) > NOW_DATS_STUPID:
 			return mostRecentPos
 		else:
-			TurnManager.switchTurn()
+			if closest_square != mostRecentPos:
+				TurnManager.switchTurn()
 			return closest_square
 	else:
 		return mostRecentPos
@@ -79,7 +82,10 @@ func isOverlappingOppositeColor():
 	var overlapping_areas = mousebox.get_overlapping_areas()
 	if len(overlapping_areas) > 0:
 		var overlapping_piece =  overlapping_areas[0].get_parent()
-		return overlapping_piece.color != self.color
+		if overlapping_areas[0].collision_layer == 2:	
+			return overlapping_piece.color != self.color
+		else:
+			return false
 	else:
 		return false
 
@@ -105,3 +111,6 @@ func updateProtect():
 		if $Movement/DiagonalMovement != null:
 			var diagonal_movement = $Movement/DiagonalMovement
 			diagonal_movement.clearProtect(self)
+
+func setMostRecentSquare():
+	mostRecentSquare = mousebox.get_overlapping_areas()[0]

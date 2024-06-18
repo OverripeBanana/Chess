@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/Move Components/horizontal_movement.gd" id="4_pketc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ofqc3"]
-radius = 25.5655
+radius = 41.1096
 
 [node name="White King" type="Node2D"]
 script = ExtResource("1_mxauu")

@@ -16,7 +16,7 @@ offset_top = -50.0
 offset_right = 50.0
 offset_bottom = 50.0
 mouse_filter = 2
-color = Color(0.896283, 0.416808, 0.16048, 1)
+color = Color(0.276713, 0.667337, 0.429445, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.55, 0.55)

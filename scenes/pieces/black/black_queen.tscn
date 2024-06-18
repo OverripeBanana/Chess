@@ -21,7 +21,7 @@ region_rect = Rect2(440, 440, 440, 440)
 
 [node name="Mousebox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
 scale = Vector2(1.02, 1.02)
