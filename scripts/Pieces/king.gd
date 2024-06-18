@@ -10,14 +10,14 @@ func _ready():
 	initPiece()
 
 func _process(_delta):
-	print(Check.whiteInCheck)
 	if mostRecentSquare == null:
 		setMostRecentSquare()
 	isInCheck()
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
+	move()
 	if Input.is_action_just_released("left_click"):
 		resetMovementComponents()
-	move()
+	
 
 func isInCheck():
 	if self.color == ChessColor.chess_color.BLACK:

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 TurnManager="*res://scripts/Global Scripts/turn_manager.gd"
 Check="*res://scripts/Global Scripts/check.gd"
+GameManager="*res://scripts/Global Scripts/game_manager.gd"
 
 [display]
 

@@ -10,7 +10,7 @@ var clicked = false
 var released = false
 var mostRecentPos : Vector2
 var legal_squares = []
-var NOW_DATS_STUPID = 5000
+var NOW_DATS_STUPID = 6000
 var mostRecentSquare
 
 func initPiece():
@@ -36,6 +36,11 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				released = true
 				snapToClosestSquare()
 				setMostRecentSquare()
+				await get_tree().create_timer(0.1).timeout
+				if GameManager.gameState == GameManager.States.ILLEGAL:
+					print("you can't do that! stupid butt nugget...")
+					TurnManager.setTurn(self.color)
+					returnToRecentPos()
 				mostRecentPos = global_position
 				parentRayCast()
 				resetMovementComponents()
