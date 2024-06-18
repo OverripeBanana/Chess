@@ -22,7 +22,7 @@ func getAllObjects():
 				if obj.collision_layer == 1:
 					ray.add_exception(obj)
 					protect(obj)
-			objects_collide.append(obj)
+					objects_collide.append(obj)
 		else:
 			ray.clear_exceptions()
 

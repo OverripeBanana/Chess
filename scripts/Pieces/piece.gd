@@ -31,12 +31,14 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 			if !event.pressed and clicked:
 				if isOverlappingOppositeColor():
 					capture()
+				else:	
+					snapToClosestSquare()
 				clicked = false
 				selected = false
 				released = true
-				snapToClosestSquare()
+				
 				setMostRecentSquare()
-				await get_tree().create_timer(0.1).timeout
+				await get_tree().create_timer(0.2).timeout
 				if GameManager.gameState == GameManager.States.ILLEGAL:
 					print("you can't do that! stupid butt nugget...")
 					TurnManager.setTurn(self.color)
@@ -78,10 +80,10 @@ func followMouse():
 	
 func capture():
 	var piece = mousebox.get_overlapping_areas()[0].get_parent()
-	
-	mostRecentPos = piece.mostRecentPos
 	piece.queue_free()
+	self.position = piece.position
 	piece.call_deferred("resetMovementComponents")
+	TurnManager.switchTurn()
 	
 func isOverlappingOppositeColor():
 	var overlapping_areas = mousebox.get_overlapping_areas()

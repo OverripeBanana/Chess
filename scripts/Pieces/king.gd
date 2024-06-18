@@ -13,6 +13,8 @@ func _process(_delta):
 	if mostRecentSquare == null:
 		setMostRecentSquare()
 	isInCheck()
+	if isInCheckmate():
+		print("game over")
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
 	move()
 	if Input.is_action_just_released("left_click"):
@@ -30,5 +32,12 @@ func isInCheck():
 			Check.whiteInCheck = true
 		else:
 			Check.whiteInCheck = false
+
+func isInCheckmate():
+	if self.color == ChessColor.chess_color.BLACK:
+		return legal_squares.all(func(square): return square.protectedByWhite)
+				
+	if self.color == ChessColor.chess_color.WHITE:
+		return legal_squares.all(func(square): return square.protectedByBlack)
 
 

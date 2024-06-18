@@ -13,7 +13,9 @@ var originalColor
 func _ready():
 	originalColor = color_rect.color
 
-
+#func _process(delta):
+	#showProtects()
+	
 func showProtects():
 	if protectedByBlack and protectedByWhite:
 		color_rect.color = Color(0, 1, 0, 1)
