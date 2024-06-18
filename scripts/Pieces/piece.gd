@@ -10,7 +10,7 @@ var clicked = false
 var released = false
 var mostRecentPos : Vector2
 var legal_squares = []
-var NOW_DATS_STUPID = 4500
+var NOW_DATS_STUPID = 5000
 var mostRecentSquare
 
 func initPiece():
@@ -35,10 +35,11 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				selected = false
 				released = true
 				snapToClosestSquare()
+				setMostRecentSquare()
 				mostRecentPos = global_position
 				parentRayCast()
 				resetMovementComponents()
-				
+					
 func searchForClosestSquare():
 	#now returns a position, not an Area2D
 	if len(legal_squares) != 0:
@@ -75,7 +76,7 @@ func capture():
 	
 	mostRecentPos = piece.mostRecentPos
 	piece.queue_free()
-	piece.call_deferred("updateProtect")
+	piece.call_deferred("resetMovementComponents")
 	
 func isOverlappingOppositeColor():
 	var overlapping_areas = mousebox.get_overlapping_areas()
@@ -104,3 +105,12 @@ func resetMovementComponents():
 
 func setMostRecentSquare():
 	mostRecentSquare = mousebox.get_overlapping_areas()[0]
+
+func inCheck():
+	if self.color == ChessColor.chess_color.BLACK:
+		return Check.blackInCheck
+	elif self.color == ChessColor.chess_color.WHITE:
+		return Check.whiteInCheck
+
+func returnToRecentPos():
+	self.position = mostRecentPos

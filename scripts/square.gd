@@ -12,8 +12,8 @@ var originalColor
 		
 func _ready():
 	originalColor = color_rect.color
-	
-func _physics_process(delta):
+
+func _process(delta):
 	showProtects()
 
 func showProtects():
