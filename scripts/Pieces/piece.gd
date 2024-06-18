@@ -35,7 +35,6 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				selected = false
 				released = true
 				snapToClosestSquare()
-
 				mostRecentPos = global_position
 				parentRayCast()
 				resetMovementComponents()
@@ -102,15 +101,6 @@ func resetMovementComponents():
 		diagonal_movement.objects_collide.clear()
 		for ray in diagonal_movement.directions:
 			ray.clear_exceptions()
-			
-func updateProtect():
-	if Input.is_action_just_released("left_click"):
-		if $Movement/HorizontalMovement != null:
-			var horizontal_movement = $Movement/HorizontalMovement
-			horizontal_movement.clearProtect(self)
-		if $Movement/DiagonalMovement != null:
-			var diagonal_movement = $Movement/DiagonalMovement
-			diagonal_movement.clearProtect(self)
 
 func setMostRecentSquare():
 	mostRecentSquare = mousebox.get_overlapping_areas()[0]

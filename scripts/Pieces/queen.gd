@@ -10,7 +10,8 @@ func _ready():
 	
 func _process(_delta):
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
-	updateProtect()
+	if Input.is_action_just_released("left_click"):
+		resetMovementComponents()
 	move()
 	
 	

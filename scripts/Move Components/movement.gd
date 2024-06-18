@@ -16,7 +16,7 @@ func initRays():
 func getAllObjects():
 	for ray in directions:
 		if ray.is_colliding():
-			#ray.force_raycast_update()
+			ray.force_raycast_update()
 			var obj = ray.get_collider()
 			if obj != null:
 				if obj.collision_layer == 1:
