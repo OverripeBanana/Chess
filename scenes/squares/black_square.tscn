@@ -19,7 +19,7 @@ mouse_filter = 2
 color = Color(0.276713, 0.667337, 0.429445, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.55, 0.55)
+scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_4h0lm")
 
 [node name="Circle" type="Sprite2D" parent="."]

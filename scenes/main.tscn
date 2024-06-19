@@ -27,4 +27,3 @@ rotation = 0.00145511
 
 [node name="Black Queen2" parent="Pieces/Black" instance=ExtResource("4_hux6i")]
 position = Vector2(350, 50)
-scale = Vector2(1, 1)

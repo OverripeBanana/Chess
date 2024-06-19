@@ -79,7 +79,11 @@ func followMouse():
 	position = get_global_mouse_position()
 	
 func capture():
-	var piece = mousebox.get_overlapping_areas()[0].get_parent()
+	var piece
+	for area in mousebox.get_overlapping_areas():
+		if area.collision_layer == 2:
+			piece = area.get_parent()
+			break
 	piece.queue_free()
 	self.position = piece.position
 	piece.call_deferred("resetMovementComponents")
