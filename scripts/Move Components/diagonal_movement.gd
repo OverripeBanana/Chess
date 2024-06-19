@@ -1,4 +1,4 @@
-extends Movement
+extends RayCastMovement
 
 class_name DiagonalMovement
 
@@ -12,12 +12,15 @@ func _ready():
 	directions.append(upLeft)
 	directions.append(downLeft)
 	directions.append(downRight)
-	initRays()
+	for ray in directions:
+		initRays(ray)
 	castRays(maxRayDistance)
 	
 func _physics_process(_delta):
 	for ray in directions:
 		getAllObjects(ray)
+	for square in objects_collide:
+		protect(square)
 	
 func castRays(maxDistance):
 	var DIAGONAL_DISTANCE_FROM_PIECE = DISTANCE_FROM_PIECE * 0.8

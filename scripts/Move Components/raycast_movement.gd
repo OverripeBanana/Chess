@@ -1,17 +1,16 @@
 extends Node2D
 
-class_name Movement
+class_name RayCastMovement
 
 var objects_collide = []
 var directions = []
 var DISTANCE_FROM_PIECE = 55
 @export var maxRayDistance : int 
 
-func initRays():
-	for ray in directions:
-		ray.collide_with_areas = true
-		ray.set_collision_mask_value(1, true)
-		ray.set_collision_mask_value(2, true)
+func initRays(ray):
+	ray.collide_with_areas = true
+	ray.set_collision_mask_value(1, true)
+	ray.set_collision_mask_value(2, true)
 		
 func getAllObjects(ray):
 	if ray.is_colliding():
@@ -20,8 +19,8 @@ func getAllObjects(ray):
 		if obj != null:
 			if obj.collision_layer == 1:
 				ray.add_exception(obj)
-				protect(obj)
-				objects_collide.append(obj)
+				if obj not in objects_collide:
+					objects_collide.append(obj)
 		else:
 			ray.clear_exceptions()
 

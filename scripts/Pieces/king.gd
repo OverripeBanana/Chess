@@ -27,7 +27,8 @@ func _process(_delta):
 func getAttackers():
 	for piece in mostRecentSquare.protectors:
 		if piece.color != self.color:
-			attackers.append(piece)	
+			if piece not in attackers:
+				attackers.append(piece)	
 
 func check():
 	if self.color == ChessColor.chess_color.BLACK:

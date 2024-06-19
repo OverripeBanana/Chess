@@ -1,4 +1,4 @@
-extends Movement
+extends RayCastMovement
 
 class_name HorizontalMovement
 
@@ -12,12 +12,15 @@ func _ready():
 	directions.append(down)
 	directions.append(left)
 	directions.append(right)
-	initRays()
+	for ray in directions:
+		initRays(ray)
 	castRays(maxRayDistance)
 	
 func _physics_process(_delta):
 	for ray in directions:
 		getAllObjects(ray)
+	for square in objects_collide:
+		protect(square)
 		
 func castRays(maxDistance):
 	add_child(up)
