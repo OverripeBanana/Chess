@@ -21,8 +21,8 @@ func getAllObjects(ray):
 				ray.add_exception(obj)
 				if obj not in objects_collide:
 					objects_collide.append(obj)
-		else:
-			ray.clear_exceptions()
+	else:
+		ray.clear_exceptions()
 
 		
 func protect(obj):

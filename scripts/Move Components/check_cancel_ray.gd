@@ -19,7 +19,6 @@ func _process(_delta):
 	else:
 		self.enabled = false
 		objects_collide.clear()
-		
 	updateGlobally()
 
 func updateGlobally():

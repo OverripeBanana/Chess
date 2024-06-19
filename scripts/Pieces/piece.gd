@@ -101,8 +101,11 @@ func isOverlappingOppositeColor():
 		for area in overlapping_areas: 
 			if area.collision_layer == 2:
 				overlapping_piece = area
-				break	
-		return overlapping_piece.get_parent().color != self.color
+				break
+		if overlapping_piece != null:
+			return overlapping_piece.get_parent().color != self.color
+		else:
+			return false
 	else:
 		return false
 

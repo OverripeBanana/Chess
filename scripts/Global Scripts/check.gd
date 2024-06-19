@@ -13,6 +13,7 @@ func _ready():
 
 func _on_black_turn_finished():
 	if whiteInCheck:
+		await get_tree().create_timer(0.2).timeout
 		for piece in whitePieces:
 			if piece.get_name() != "White King":
 				for square in piece.legal_squares:
@@ -24,6 +25,7 @@ func _on_black_turn_finished():
 
 func _on_white_turn_finished():
 	if blackInCheck:
+		await get_tree().create_timer(0.2).timeout
 		for piece in blackPieces:
 			if piece.get_name() != "Black King":
 				for square in piece.legal_squares:
