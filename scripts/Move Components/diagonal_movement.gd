@@ -16,7 +16,8 @@ func _ready():
 	castRays(maxRayDistance)
 	
 func _physics_process(_delta):
-	getAllObjects()
+	for ray in directions:
+		getAllObjects(ray)
 	
 func castRays(maxDistance):
 	var DIAGONAL_DISTANCE_FROM_PIECE = DISTANCE_FROM_PIECE * 0.8

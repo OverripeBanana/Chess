@@ -16,8 +16,9 @@ func _ready():
 	castRays(maxRayDistance)
 	
 func _physics_process(_delta):
-	getAllObjects()
-	
+	for ray in directions:
+		getAllObjects(ray)
+		
 func castRays(maxDistance):
 	add_child(up)
 	add_child(down)
