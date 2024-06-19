@@ -31,8 +31,8 @@ shape = SubResource("CircleShape2D_7lp2n")
 
 [node name="DiagonalMovement" type="Node2D" parent="Movement"]
 script = ExtResource("3_3yawe")
-maxRayDistance = 800
+maxRayDistance = 1500
 
 [node name="HorizontalMovement" type="Node2D" parent="Movement"]
 script = ExtResource("4_l4stj")
-maxRayDistance = 800
+maxRayDistance = 1500

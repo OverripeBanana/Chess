@@ -14,6 +14,7 @@ func _process(_delta):
 		var attacker = king.attackers[0]
 		self.target_position = attacker.global_position - self.global_position
 		getAllObjects(self)
-		print(objects_collide)
+		#for square in objects_collide:
+			#square.color_rect.color = Color(0, 0, 1, 1)
 	else:
 		self.enabled = false
