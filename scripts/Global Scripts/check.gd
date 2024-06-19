@@ -20,9 +20,9 @@ func _on_black_turn_finished():
 					if square in whiteCancelCheckSquares:
 						print("not checkmate")
 						break
-					elif square == piece.legal_squares.back() and square not in whiteCancelCheckSquares:
+					elif square == piece.legal_squares.back() and square not in whiteCancelCheckSquares and piece == whitePieces.back():
 						print("can't block or capture")
-
+				
 func _on_white_turn_finished():
 	if blackInCheck:
 		await get_tree().create_timer(0.2).timeout
