@@ -46,8 +46,8 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 					print("you can't do that! stupid butt nugget...")
 					TurnManager.setTurn(self.color)
 					returnToRecentPos()
+					setMostRecentSquare()
 					
-				
 				mostRecentPos = global_position
 				
 					
@@ -88,19 +88,21 @@ func capture():
 		if area.collision_layer == 2:
 			piece = area.get_parent()
 			break
+	piece.resetMovementComponents()
 	piece.queue_free()
 	self.position = piece.position
-	piece.call_deferred("resetMovementComponents")
+	#piece.call_deferred("resetMovementComponents")
 	TurnManager.switchTurn()
 	
 func isOverlappingOppositeColor():
 	var overlapping_areas = mousebox.get_overlapping_areas()
+	var overlapping_piece
 	if len(overlapping_areas) > 0:
-		var overlapping_piece =  overlapping_areas[0].get_parent()
-		if overlapping_areas[0].collision_layer == 2:	
-			return overlapping_piece.color != self.color
-		else:
-			return false
+		for area in overlapping_areas: 
+			if area.collision_layer == 2:
+				overlapping_piece = area
+				break	
+		return overlapping_piece.get_parent().color != self.color
 	else:
 		return false
 

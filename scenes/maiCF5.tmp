@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cklhii31drk7p"]
+[gd_scene load_steps=5 format=3 uid="uid://cklhii31drk7p"]
 
 [ext_resource type="PackedScene" uid="uid://c4ud5ilna8ghg" path="res://scenes/board.tscn" id="1_jtkre"]
 [ext_resource type="Script" path="res://scripts/pieces.gd" id="2_jx84a"]
 [ext_resource type="PackedScene" uid="uid://cenp11ktwwgf0" path="res://scenes/pieces/white/white_king.tscn" id="3_7lygd"]
 [ext_resource type="PackedScene" uid="uid://dqu8uqp4g65j" path="res://scenes/pieces/black/black_queen.tscn" id="4_hux6i"]
-[ext_resource type="PackedScene" uid="uid://bljwfi6fsg3fi" path="res://scenes/pieces/white/white_queen.tscn" id="6_v47w3"]
 
 [node name="Main" type="Node2D"]
 
@@ -16,17 +15,10 @@ script = ExtResource("2_jx84a")
 [node name="White" type="Node2D" parent="Pieces"]
 
 [node name="White King" parent="Pieces/White" instance=ExtResource("3_7lygd")]
-position = Vector2(650, 750)
-
-[node name="White Queen" parent="Pieces/White" instance=ExtResource("6_v47w3")]
-position = Vector2(750, 250)
+position = Vector2(750, 750)
 
 [node name="Black" type="Node2D" parent="Pieces"]
 
 [node name="Black Queen" parent="Pieces/Black" instance=ExtResource("4_hux6i")]
-position = Vector2(250, 750)
-rotation = 0.00145511
-
-[node name="Black Queen2" parent="Pieces/Black" instance=ExtResource("4_hux6i")]
-position = Vector2(250, 451)
+position = Vector2(50, 50)
 rotation = 0.00145511

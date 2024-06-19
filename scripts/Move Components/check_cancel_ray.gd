@@ -18,3 +18,16 @@ func _process(_delta):
 			#square.color_rect.color = Color(0, 0, 1, 1)
 	else:
 		self.enabled = false
+		objects_collide.clear()
+		
+	updateGlobally()
+
+func updateGlobally():
+	if king.color == ChessColor.chess_color.BLACK:
+		Check.blackCancelCheckSquares = objects_collide
+	if king.color == ChessColor.chess_color.WHITE:	
+		Check.whiteCancelCheckSquares = objects_collide
+		
+		
+		
+		
