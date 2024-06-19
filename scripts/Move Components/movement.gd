@@ -4,7 +4,7 @@ class_name Movement
 
 var objects_collide = []
 var directions = []
-var DISTANCE_FROM_PIECE = 50
+var DISTANCE_FROM_PIECE = 55
 @export var maxRayDistance : int 
 
 func initRays():
@@ -16,7 +16,7 @@ func initRays():
 func getAllObjects():
 	for ray in directions:
 		if ray.is_colliding():
-			ray.force_raycast_update()
+			#ray.force_raycast_update()
 			var obj = ray.get_collider()
 			if obj != null:
 				if obj.collision_layer == 1:
@@ -33,7 +33,10 @@ func protect(obj):
 		obj.protectedByBlack = true
 	elif myColor == ChessColor.chess_color.WHITE:
 		obj.protectedByWhite = true
-
+		
+	if self.get_parent().get_parent() not in obj.protectors:
+		obj.protectors.append(self.get_parent().get_parent())
+	
 func clearProtect(piece):
 	for obj in objects_collide:
 		if obj != null:

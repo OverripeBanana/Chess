@@ -29,23 +29,27 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				clicked = true
 				released = false
 			if !event.pressed and clicked:
+				
 				if isOverlappingOppositeColor():
 					capture()
 				else:	
 					snapToClosestSquare()
+					
 				clicked = false
 				selected = false
 				released = true
-				
+				parentRayCast()
 				setMostRecentSquare()
+				
 				await get_tree().create_timer(0.2).timeout
 				if GameManager.gameState == GameManager.States.ILLEGAL:
 					print("you can't do that! stupid butt nugget...")
 					TurnManager.setTurn(self.color)
 					returnToRecentPos()
+					
+				
 				mostRecentPos = global_position
-				parentRayCast()
-				resetMovementComponents()
+				
 					
 func searchForClosestSquare():
 	#now returns a position, not an Area2D
@@ -107,6 +111,7 @@ func resetMovementComponents():
 		horizontal_movement.objects_collide.clear()
 		for ray in horizontal_movement.directions:
 			ray.clear_exceptions()
+		
 	if $Movement/DiagonalMovement != null:
 		var diagonal_movement = $Movement/DiagonalMovement
 		diagonal_movement.clearProtect(self)
