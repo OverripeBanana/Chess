@@ -19,7 +19,7 @@ script = ExtResource("2_jx84a")
 position = Vector2(650, 750)
 
 [node name="White Queen" parent="Pieces/White" instance=ExtResource("6_v47w3")]
-position = Vector2(750, 750)
+position = Vector2(750, 650)
 
 [node name="White Queen2" parent="Pieces/White" instance=ExtResource("6_v47w3")]
 position = Vector2(50, 650)

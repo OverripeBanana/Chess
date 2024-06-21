@@ -1,7 +1,9 @@
 extends Node
 
-enum States {LEGAL, ILLEGAL, BLACK_WIN, WHITE_WIN, STALEMATE}
+enum States {LEGAL, ILLEGAL}
+enum WinStates {DEFAULT, BLACK_WIN, WHITE_WIN, STALEMATE}
 var gameState : States
+var winState : WinStates = WinStates.DEFAULT
 
 func _ready():
 	TurnManager.blackTurnFinished.connect(_on_black_turn_finished)

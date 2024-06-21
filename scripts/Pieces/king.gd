@@ -17,13 +17,14 @@ func _process(_delta):
 	
 	getAttackers()
 	
+	isInStalemate()
+	
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
 	move()
 	
 	if Input.is_action_just_released("left_click"):
 		resetMovementComponents()
 		attackers.clear()
-
 func getAttackers():
 	for piece in mostRecentSquare.protectors:
 		if piece.color != self.color:
@@ -42,5 +43,20 @@ func check():
 		else:
 			Check.whiteInCheck = false
 
-
+func isInStalemate():
+	for square in legal_squares:
+		if self.color == ChessColor.chess_color.BLACK:
+			if !square.protectedByWhite:
+				Check.blackInStalemate = false
+				return false
+			if square.protectedByWhite and square == legal_squares.back():
+				Check.blackInStalemate = true
+				return true
+		if self.color == ChessColor.chess_color.WHITE:
+			if !square.protectedByBlack:
+				Check.whiteInStalemate = false
+				return false
+			if square.protectedByBlack and square == legal_squares.back():	
+				Check.whiteInStalemate = true
+				return true		
 		
