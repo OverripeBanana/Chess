@@ -15,7 +15,7 @@ func _ready():
 	originalColor = color_rect.color
 
 func _process(_delta):
-	showProtects()
+	#showProtects()
 	if Input.is_action_just_released("left_click"):
 		protectors.clear()
 		

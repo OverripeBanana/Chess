@@ -13,8 +13,8 @@ func _ready():
 	TurnManager.blackTurnFinished.connect(_on_black_turn_finished)
 	TurnManager.whiteTurnFinished.connect(_on_white_turn_finished)
 
-func _process(delta):
-	print(GameManager.winState)
+#func _process(delta):
+	#print(GameManager.winState)
 	#print(whiteInStalemate)
 	#print(canWhiteBlockOrCapture())
 	
