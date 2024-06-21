@@ -13,24 +13,22 @@ func _ready():
 	TurnManager.blackTurnFinished.connect(_on_black_turn_finished)
 	TurnManager.whiteTurnFinished.connect(_on_white_turn_finished)
 
-#func _process(delta):
-	#print(GameManager.winState)
+func _process(delta):
+	print(GameManager.winState)
 	#print(whiteInStalemate)
 	#print(canWhiteBlockOrCapture())
 	
 func _on_black_turn_finished():
 	await get_tree().create_timer(0.2).timeout
-	if whiteInCheck:
-		if whiteInStalemate:
-			await get_tree().create_timer(0.2).timeout
+	if whiteInStalemate:
+		if whiteInCheck:
 			if !canWhiteBlockOrCapture():
 				GameManager.winState = GameManager.WinStates.BLACK_WIN #the stupid diggas won
-				
+			
 func _on_white_turn_finished():
 	await get_tree().create_timer(0.2).timeout
-	if blackInCheck:
-		if blackInStalemate:
-			await get_tree().create_timer(0.2).timeout
+	if blackInStalemate:
+		if blackInCheck:
 			if !canBlackBlockOrCapture():
 				GameManager.winState = GameManager.WinStates.WHITE_WIN
 	

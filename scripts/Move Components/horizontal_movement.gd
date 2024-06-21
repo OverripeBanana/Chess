@@ -19,7 +19,7 @@ func _ready():
 func _physics_process(_delta):
 	for ray in directions:
 		getAllObjects(ray)
-	for square in objects_collide:
+	for square in protected_squares:
 		protect(square)
 		
 func castRays(maxDistance):

@@ -6,6 +6,7 @@ class_name Square
 @onready var color_rect = $ColorRect
 var protectedByBlack : bool = false
 var protectedByWhite : bool = false
+var occupied : bool = false
 var protectors = []
 var originalColor
 #variables
@@ -14,7 +15,7 @@ func _ready():
 	originalColor = color_rect.color
 
 func _process(_delta):
-	#showProtects()
+	showProtects()
 	if Input.is_action_just_released("left_click"):
 		protectors.clear()
 		
