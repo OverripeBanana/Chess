@@ -17,6 +17,8 @@ func getAllObjects(ray):
 		#ray.force_raycast_update()
 		var obj = ray.get_collider()
 		if obj != null:
+			if obj.get_parent().get_name() == "White King" or obj.get_parent().get_name() == "Black King":
+				ray.add_exception(obj)
 			if obj.collision_layer == 1:
 				ray.add_exception(obj)
 				if obj not in objects_collide:
