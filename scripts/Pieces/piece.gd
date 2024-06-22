@@ -34,7 +34,8 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 					capture()
 				else:	
 					snapToClosestSquare()
-					
+				
+				mostRecentSquare.occupied = ChessColor.chess_color.NEITHER
 				clicked = false
 				selected = false
 				released = true

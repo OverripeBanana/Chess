@@ -28,5 +28,5 @@ position = Vector2(550, 450)
 rotation = 0.00145511
 
 [node name="Black Queen2" parent="Pieces/Black" instance=ExtResource("4_hux6i")]
-position = Vector2(350, 750)
+position = Vector2(550, 750)
 rotation = 0.00145511
