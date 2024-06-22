@@ -20,6 +20,7 @@ func _process(_delta):
 	isInStalemate()
 	
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
+	removeOccupiedSquares()
 	move()
 	
 	if Input.is_action_just_released("left_click"):

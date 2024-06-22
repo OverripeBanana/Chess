@@ -6,9 +6,9 @@ class_name Square
 @onready var color_rect = $ColorRect
 var protectedByBlack : bool = false
 var protectedByWhite : bool = false
-var occupied : bool = false
 var protectors = []
 var originalColor
+var occupied : ChessColor.chess_color = ChessColor.chess_color.NEITHER
 #variables
 		
 func _ready():

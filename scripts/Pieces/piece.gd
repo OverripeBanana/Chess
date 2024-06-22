@@ -125,7 +125,13 @@ func resetMovementComponents():
 			ray.clear_exceptions()
 
 func setMostRecentSquare():
-	mostRecentSquare = mousebox.get_overlapping_areas()[0]
+	var overlapping_areas = mousebox.get_overlapping_areas()
+	if len(overlapping_areas) > 0:
+		for area in overlapping_areas:
+			if area.collision_layer == 1:
+				mostRecentSquare = area
+				break
+		mostRecentSquare.occupied = self.color
 
 func inCheck():
 	if self.color == ChessColor.chess_color.BLACK:
@@ -135,3 +141,9 @@ func inCheck():
 
 func returnToRecentPos():
 	self.position = mostRecentPos
+
+func removeOccupiedSquares():
+	if len(legal_squares) > 0:
+		for square in legal_squares:
+			if square.occupied == self.color:
+				legal_squares.erase(square)
