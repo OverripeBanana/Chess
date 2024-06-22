@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://xend71lgy6mi"]
+
+[ext_resource type="Script" path="res://scripts/Pieces/king.gd" id="1_2go0q"]
+[ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_o56sr"]
+[ext_resource type="Script" path="res://scripts/Move Components/diagonal_movement.gd" id="3_yuo2a"]
+[ext_resource type="Script" path="res://scripts/Move Components/horizontal_movement.gd" id="4_5frn1"]
+[ext_resource type="Script" path="res://scripts/Move Components/check_cancel_ray.gd" id="5_f6571"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_daqad"]
+radius = 33.3333
+
+[node name="Black King" type="Node2D"]
+script = ExtResource("1_2go0q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -6)
+scale = Vector2(0.176136, 0.176136)
+texture = ExtResource("2_o56sr")
+region_enabled = true
+region_rect = Rect2(0, 440, 440, 440)
+
+[node name="Mousebox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
+scale = Vector2(1.02, 1.02)
+shape = SubResource("CircleShape2D_daqad")
+
+[node name="Movement" type="Node2D" parent="."]
+
+[node name="DiagonalMovement" type="Node2D" parent="Movement"]
+script = ExtResource("3_yuo2a")
+maxRayDistance = 100
+
+[node name="HorizontalMovement" type="Node2D" parent="Movement"]
+script = ExtResource("4_5frn1")
+maxRayDistance = 100
+
+[node name="CheckCancel" type="RayCast2D" parent="Movement"]
+target_position = Vector2(0, 25)
+script = ExtResource("5_f6571")

@@ -42,7 +42,8 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				parentRayCast()
 				setMostRecentSquare()
 				
-				await get_tree().create_timer(0.2).timeout
+				await get_tree().create_timer(1).timeout
+				
 				if GameManager.gameState == GameManager.States.ILLEGAL:
 					print("you can't do that! stupid butt nugget...")
 					TurnManager.setTurn(self.color)
@@ -59,22 +60,24 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 					
 func searchForClosestSquare():
 	#now returns a position, not an Area2D
-	if len(legal_squares) != 0:
-		var closest_square = mostRecentPos
+	var closest_square
+	if len(legal_squares) > 0:
+		closest_square = mostRecentPos
 		for value in legal_squares:
 			if is_instance_valid(value):
-				if position.distance_squared_to(value.position) < position.distance_squared_to(closest_square):
-					closest_square = value.position
+				if position.distance_squared_to(value.global_position) < position.distance_squared_to(closest_square):
+					closest_square = value.global_position
 		if position.distance_squared_to(closest_square) > NOW_DATS_STUPID:
 			return mostRecentPos
 		else:
 			if closest_square != mostRecentPos:
-				TurnManager.switchTurn()
+				TurnManager.switchTurn(self.color)
 			return closest_square
 	else:
 		return mostRecentPos
 		
 func snapToClosestSquare():
+	print(searchForClosestSquare())
 	position = searchForClosestSquare()
 	
 func unparentRayCast():
@@ -98,7 +101,7 @@ func capture():
 	piece.disableMovement()
 	piece.visible = false
 	self.position = piece.position
-	TurnManager.switchTurn()
+	TurnManager.switchTurn(self.color)
 	return piece
 	
 func isOverlappingOppositeColor():
@@ -124,6 +127,7 @@ func resetMovementComponents():
 			horizontal_movement.objects_collide.clear()
 			for ray in horizontal_movement.directions:
 				ray.clear_exceptions()
+				ray.collide_with_bodies = true
 		
 		if movement.get_node_or_null("DiagonalMovement") != null:
 			var diagonal_movement = $Movement/DiagonalMovement
@@ -131,7 +135,8 @@ func resetMovementComponents():
 			diagonal_movement.objects_collide.clear()
 			for ray in diagonal_movement.directions:
 				ray.clear_exceptions()
-
+				ray.collide_with_bodies = true
+				
 func setMostRecentSquare():
 	var overlapping_areas = mousebox.get_overlapping_areas()
 	if len(overlapping_areas) > 0:
@@ -140,12 +145,6 @@ func setMostRecentSquare():
 				mostRecentSquare = area
 				break
 		mostRecentSquare.occupied = self.color
-
-func inCheck():
-	if self.color == ChessColor.chess_color.BLACK:
-		return Check.blackInCheck
-	elif self.color == ChessColor.chess_color.WHITE:
-		return Check.whiteInCheck
 
 func returnToRecentPos():
 	self.position = mostRecentPos

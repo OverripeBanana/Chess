@@ -18,7 +18,6 @@ func _process(_delta):
 	getAttackers()
 	
 	isInStalemate()
-	
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
 	removeOccupiedSquares()
 	move()
@@ -26,6 +25,7 @@ func _process(_delta):
 	if Input.is_action_just_released("left_click"):
 		resetMovementComponents()
 		attackers.clear()
+
 func getAttackers():
 	for piece in mostRecentSquare.protectors:
 		if piece.color != self.color:
