@@ -29,9 +29,9 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				clicked = true
 				released = false
 			if !event.pressed and clicked:
-				
+				var capturedPiece
 				if isOverlappingOppositeColor():
-					capture()
+					capturedPiece = capture()
 				else:	
 					snapToClosestSquare()
 				
@@ -47,8 +47,13 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 					print("you can't do that! stupid butt nugget...")
 					TurnManager.setTurn(self.color)
 					returnToRecentPos()
+					if capturedPiece != null:
+						capturedPiece.enableMovement()
+						capturedPiece.visible = true
 					setMostRecentSquare()
-					
+				else:
+					if capturedPiece != null:
+						capturedPiece.queue_free()	
 				mostRecentPos = global_position
 				
 					
@@ -90,10 +95,11 @@ func capture():
 			piece = area.get_parent()
 			break
 	piece.resetMovementComponents()
-	piece.queue_free()
+	piece.disableMovement()
+	piece.visible = false
 	self.position = piece.position
-	#piece.call_deferred("resetMovementComponents")
 	TurnManager.switchTurn()
+	return piece
 	
 func isOverlappingOppositeColor():
 	var overlapping_areas = mousebox.get_overlapping_areas()
@@ -111,19 +117,20 @@ func isOverlappingOppositeColor():
 		return false
 
 func resetMovementComponents():
-	if $Movement/HorizontalMovement != null:
-		var horizontal_movement = $Movement/HorizontalMovement
-		horizontal_movement.clearProtect(self)
-		horizontal_movement.objects_collide.clear()
-		for ray in horizontal_movement.directions:
-			ray.clear_exceptions()
+	if get_node_or_null("Movement") != null:
+		if movement.get_node_or_null("HorizontalMovement") != null:
+			var horizontal_movement = $Movement/HorizontalMovement
+			horizontal_movement.clearProtect(self)
+			horizontal_movement.objects_collide.clear()
+			for ray in horizontal_movement.directions:
+				ray.clear_exceptions()
 		
-	if $Movement/DiagonalMovement != null:
-		var diagonal_movement = $Movement/DiagonalMovement
-		diagonal_movement.clearProtect(self)
-		diagonal_movement.objects_collide.clear()
-		for ray in diagonal_movement.directions:
-			ray.clear_exceptions()
+		if movement.get_node_or_null("DiagonalMovement") != null:
+			var diagonal_movement = $Movement/DiagonalMovement
+			diagonal_movement.clearProtect(self)
+			diagonal_movement.objects_collide.clear()
+			for ray in diagonal_movement.directions:
+				ray.clear_exceptions()
 
 func setMostRecentSquare():
 	var overlapping_areas = mousebox.get_overlapping_areas()
@@ -148,3 +155,9 @@ func removeOccupiedSquares():
 		for square in legal_squares:
 			if square.occupied == self.color:
 				legal_squares.erase(square)
+
+func disableMovement():
+	remove_child(movement)
+
+func enableMovement():
+	add_child(movement)

@@ -6,7 +6,7 @@ signal blackTurnFinished
 signal whiteTurnFinished
 
 func _ready():
-	currentTurn = ChessColor.chess_color.BLACK
+	currentTurn = ChessColor.chess_color.WHITE
 
 func switchTurn():
 	if currentTurn == ChessColor.chess_color.WHITE:
