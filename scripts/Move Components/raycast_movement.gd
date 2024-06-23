@@ -1,9 +1,7 @@
-extends Node2D
+extends Movement
 
 class_name RayCastMovement
 
-var objects_collide = []
-var protected_squares = []
 var directions = []
 var DISTANCE_FROM_PIECE = 55
 @export var maxRayDistance : int 
