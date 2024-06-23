@@ -19,14 +19,14 @@ func _ready():
 	#print(canWhiteBlockOrCapture())
 	
 func _on_black_turn_finished():
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.3).timeout
 	if whiteInStalemate:
 		if whiteInCheck:
 			if !canWhiteBlockOrCapture():
 				GameManager.winState = GameManager.WinStates.BLACK_WIN #the stupid diggas won
 			
 func _on_white_turn_finished():
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.3).timeout
 	if blackInStalemate:
 		if blackInCheck:
 			if !canBlackBlockOrCapture():

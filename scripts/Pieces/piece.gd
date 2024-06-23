@@ -12,6 +12,7 @@ var mostRecentPos : Vector2
 var legal_squares = []
 var NOW_DATS_STUPID = 28000
 var mostRecentSquare
+var RESET_WAIT_TIME = 0.2
 
 func initPiece():
 	mousebox.input_event.connect(_on_mousebox_input_event)
@@ -43,7 +44,6 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				setMostRecentSquare()
 				
 				await get_tree().create_timer(0.4).timeout
-				
 				if GameManager.gameState == GameManager.States.ILLEGAL:
 					print("you can't do that! stupid butt nugget...")
 					TurnManager.setTurn(self.color)
@@ -67,16 +67,16 @@ func searchForClosestSquare():
 			if position.distance_squared_to(value.position) < position.distance_squared_to(closest_square):
 				closest_square = value.global_position
 		if position.distance_squared_to(closest_square) > NOW_DATS_STUPID:
-			print("stupid")
-			print(global_position.distance_squared_to(closest_square))
+			#print("stupid")
+			#print(global_position.distance_squared_to(closest_square))
 			return mostRecentPos
 		else:
 			if closest_square != mostRecentPos:
 				TurnManager.switchTurn(self.color)
-			print("returned closest square")
+			#print("returned closest square")
 			return closest_square
 	else:
-		print("no legal squares")
+		#print("no legal squares")
 		return mostRecentPos
 		
 func snapToClosestSquare():
