@@ -43,7 +43,7 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				parentRayCast()
 				setMostRecentSquare()
 				
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.5).timeout
 				if GameManager.gameState == GameManager.States.ILLEGAL:
 					print("you can't do that! stupid butt nugget...")
 					TurnManager.setTurn(self.color)

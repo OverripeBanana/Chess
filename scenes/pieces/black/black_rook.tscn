@@ -1,22 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://biemth6im1ve3"]
+[gd_scene load_steps=5 format=3 uid="uid://xwmopxqarcn"]
 
-[ext_resource type="Script" path="res://scripts/Pieces/rook.gd" id="1_jynjm"]
-[ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_breja"]
-[ext_resource type="Script" path="res://scripts/Move Components/horizontal_movement.gd" id="3_j2di4"]
+[ext_resource type="Script" path="res://scripts/Pieces/rook.gd" id="1_dueh1"]
+[ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_146p3"]
+[ext_resource type="Script" path="res://scripts/Move Components/horizontal_movement.gd" id="3_vx3u1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fysir"]
 radius = 33.0606
 
-[node name="White Rook" type="Node2D"]
-script = ExtResource("1_jynjm")
-color = 1
+[node name="Black Rook" type="Node2D"]
+script = ExtResource("1_dueh1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(11, -6)
 scale = Vector2(0.176136, 0.176136)
-texture = ExtResource("2_breja")
+texture = ExtResource("2_146p3")
 region_enabled = true
-region_rect = Rect2(1760, 0, 440, 440)
+region_rect = Rect2(1760, 440, 440, 440)
 
 [node name="Mousebox" type="Area2D" parent="."]
 collision_layer = 2
@@ -28,5 +27,5 @@ shape = SubResource("CircleShape2D_fysir")
 [node name="Movement" type="Node2D" parent="."]
 
 [node name="HorizontalMovement" type="Node2D" parent="Movement"]
-script = ExtResource("3_j2di4")
+script = ExtResource("3_vx3u1")
 maxRayDistance = 1500
