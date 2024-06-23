@@ -43,9 +43,12 @@ func protect(obj):
 	
 func clearProtect(piece):
 	for obj in protected_squares:
-		if obj != null:
+		if is_instance_valid(obj):
 			if obj.collision_layer == 1:
 				if piece.color == ChessColor.chess_color.BLACK:
 					obj.protectedByBlack = false
 				elif piece.color == ChessColor.chess_color.WHITE:
 					obj.protectedByWhite = false
+	protected_squares.clear()
+	#if self.get_parent().get_name() == "White Queen":
+		#print(protected_squares)
