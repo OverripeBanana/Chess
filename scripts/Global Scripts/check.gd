@@ -24,14 +24,15 @@ func _on_black_turn_finished():
 		if whiteInCheck:
 			if !canWhiteBlockOrCapture():
 				GameManager.winState = GameManager.WinStates.BLACK_WIN #the stupid diggas won
-			
+				get_tree().quit()
+
 func _on_white_turn_finished():
 	await get_tree().create_timer(0.3).timeout
 	if blackInStalemate:
 		if blackInCheck:
 			if !canBlackBlockOrCapture():
 				GameManager.winState = GameManager.WinStates.WHITE_WIN
-	
+				get_tree().quit()
 	
 func canBlackBlockOrCapture():
 	for piece in blackPieces:
