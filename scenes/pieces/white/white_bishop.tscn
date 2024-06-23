@@ -1,18 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://n3ktjskvvx8t"]
+[gd_scene load_steps=5 format=3 uid="uid://n3ktjskvvx8t"]
 
-[ext_resource type="Script" path="res://scripts/Pieces/piece.gd" id="1_l7p38"]
+[ext_resource type="Script" path="res://scripts/Pieces/bishop.gd" id="1_4ibiy"]
 [ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_v3v7a"]
+[ext_resource type="Script" path="res://scripts/Move Components/diagonal_movement.gd" id="3_3m5qj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0hum"]
-size = Vector2(12.0208, 765.391)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_66cu0"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_fysir"]
-radius = 33.0606
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlmc3"]
+radius = 33.3333
 
 [node name="White Bishop" type="Node2D"]
-script = ExtResource("1_l7p38")
+script = ExtResource("1_4ibiy")
+color = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(6, -4)
@@ -21,35 +18,16 @@ texture = ExtResource("2_v3v7a")
 region_enabled = true
 region_rect = Rect2(880, 0, 440, 440)
 
-[node name="Movement" type="Area2D" parent="."]
-visible = false
-rotation = 0.785398
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement"]
-position = Vector2(-469.519, 8.13173)
-rotation = -1.5708
-shape = SubResource("RectangleShape2D_g0hum")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Movement"]
-position = Vector2(456.084, 2.12128)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_g0hum")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Movement"]
-position = Vector2(1.41422, 453.963)
-shape = SubResource("RectangleShape2D_g0hum")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Movement"]
-position = Vector2(4.94975, -470.226)
-shape = SubResource("RectangleShape2D_g0hum")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Movement"]
-shape = SubResource("RectangleShape2D_66cu0")
-
 [node name="Mousebox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mousebox"]
-position = Vector2(0, -2)
-shape = SubResource("CircleShape2D_fysir")
+scale = Vector2(1.02, 1.02)
+shape = SubResource("CircleShape2D_qlmc3")
+
+[node name="Movement" type="Node2D" parent="."]
+
+[node name="DiagonalMovement" type="Node2D" parent="Movement"]
+script = ExtResource("3_3m5qj")
+maxRayDistance = 1500

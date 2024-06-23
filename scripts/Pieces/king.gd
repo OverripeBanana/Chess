@@ -23,6 +23,7 @@ func _process(_delta):
 	move()
 	
 	if Input.is_action_just_released("left_click"):
+		await get_tree().create_timer(0.2).timeout
 		resetMovementComponents()
 		attackers.clear()
 

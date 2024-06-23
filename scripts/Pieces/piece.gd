@@ -10,7 +10,7 @@ var clicked = false
 var released = false
 var mostRecentPos : Vector2
 var legal_squares = []
-var NOW_DATS_STUPID = 6000
+var NOW_DATS_STUPID = 28000
 var mostRecentSquare
 
 func initPiece():
@@ -42,7 +42,7 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				parentRayCast()
 				setMostRecentSquare()
 				
-				await get_tree().create_timer(1).timeout
+				await get_tree().create_timer(0.4).timeout
 				
 				if GameManager.gameState == GameManager.States.ILLEGAL:
 					print("you can't do that! stupid butt nugget...")
@@ -61,23 +61,26 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 func searchForClosestSquare():
 	#now returns a position, not an Area2D
 	var closest_square
-	if len(legal_squares) > 0:
+	if len(legal_squares) != 0:
 		closest_square = mostRecentPos
 		for value in legal_squares:
-			if is_instance_valid(value):
-				if position.distance_squared_to(value.global_position) < position.distance_squared_to(closest_square):
-					closest_square = value.global_position
+			if position.distance_squared_to(value.position) < position.distance_squared_to(closest_square):
+				closest_square = value.global_position
 		if position.distance_squared_to(closest_square) > NOW_DATS_STUPID:
+			print("stupid")
+			print(global_position.distance_squared_to(closest_square))
 			return mostRecentPos
 		else:
 			if closest_square != mostRecentPos:
 				TurnManager.switchTurn(self.color)
+			print("returned closest square")
 			return closest_square
 	else:
+		print("no legal squares")
 		return mostRecentPos
 		
 func snapToClosestSquare():
-	print(searchForClosestSquare())
+	#print(searchForClosestSquare())
 	position = searchForClosestSquare()
 	
 func unparentRayCast():
