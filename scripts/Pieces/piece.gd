@@ -14,6 +14,8 @@ var NOW_DATS_STUPID = 28000
 var mostRecentSquare
 var RESET_WAIT_TIME = 0.2
 
+signal finishedMovement
+
 func initPiece():
 	mousebox.input_event.connect(_on_mousebox_input_event)
 	mostRecentPos = global_position
@@ -31,10 +33,10 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				released = false
 			if !event.pressed and clicked:
 				var capturedPiece
-				if isOverlappingOppositeColor():
-					capturedPiece = capture()
-				else:	
-					snapToClosestSquare()
+				snapToClosestSquare()
+				
+
+				
 				
 				mostRecentSquare.occupied = ChessColor.chess_color.NEITHER
 				clicked = false
@@ -43,6 +45,10 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				parentRayCast()
 				setMostRecentSquare()
 				
+				await self.finishedMovement
+				if isOverlappingOppositeColor():
+					capturedPiece = capture()
+					
 				await get_tree().create_timer(0.5).timeout
 				if GameManager.gameState == GameManager.States.ILLEGAL:
 					print("you can't do that! stupid butt nugget...")
@@ -82,6 +88,7 @@ func searchForClosestSquare():
 func snapToClosestSquare():
 	#print(searchForClosestSquare())
 	position = searchForClosestSquare()
+	emit_signal("finishedMovement")
 	
 func unparentRayCast():
 	movement.set_as_top_level(true)
