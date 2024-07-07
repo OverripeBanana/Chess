@@ -34,10 +34,6 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				released = false
 			if !event.pressed and clicked:
 				snapToClosestSquare()
-				
-
-				
-				
 				mostRecentSquare.occupied = ChessColor.chess_color.NEITHER
 				clicked = false
 				selected = false
@@ -64,6 +60,7 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				
 				self.hasMoved = true
 				
+				
 func searchForClosestSquare():
 	#now returns a position, not an Area2D
 	var closest_square
@@ -88,7 +85,6 @@ func searchForClosestSquare():
 func snapToClosestSquare():
 	#print(searchForClosestSquare())
 	position = searchForClosestSquare()
-	emit_signal("finishedMovement")
 	
 func unparentRayCast():
 	movement.set_as_top_level(true)
