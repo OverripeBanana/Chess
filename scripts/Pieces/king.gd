@@ -29,10 +29,14 @@ func _process(_delta):
 
 func getAttackers():
 	for piece in mostRecentSquare.protectors:
-		if piece.color != self.color:
-			if piece not in attackers:
-				attackers.append(piece)	
-
+		if is_instance_valid(piece):
+			if piece.color != self.color:
+				if piece not in attackers:
+					attackers.append(piece)	
+		else:
+			attackers.erase(piece)
+			
+			
 func check():
 	if self.color == ChessColor.chess_color.BLACK:
 		if mostRecentSquare.protectedByWhite:

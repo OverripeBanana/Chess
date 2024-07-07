@@ -8,6 +8,7 @@ class_name Piece
 var selected = false
 var clicked = false
 var released = false
+var hasMoved = false
 var mostRecentPos : Vector2
 var legal_squares = []
 var NOW_DATS_STUPID = 28000
@@ -32,7 +33,6 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				clicked = true
 				released = false
 			if !event.pressed and clicked:
-				var capturedPiece
 				snapToClosestSquare()
 				
 
@@ -44,26 +44,26 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				released = true
 				parentRayCast()
 				setMostRecentSquare()
-				
-				await self.finishedMovement
-				if isOverlappingOppositeColor():
-					capturedPiece = capture()
 					
 				await get_tree().create_timer(0.5).timeout
 				if GameManager.gameState == GameManager.States.ILLEGAL:
 					print("you can't do that! stupid butt nugget...")
 					TurnManager.setTurn(self.color)
 					returnToRecentPos()
-					if capturedPiece != null:
-						capturedPiece.enableMovement()
-						capturedPiece.visible = true
-					setMostRecentSquare()
-				else:
-					if capturedPiece != null:
-						capturedPiece.queue_free()	
+					#if capturedPiece != null:
+						#capturedPiece.enableMovement()
+						#capturedPiece.visible = true
+					#setMostRecentSquare()
+				#else:
+					#if capturedPiece != null:
+						#capturedPiece.queue_free()	
 				mostRecentPos = global_position
 				
-					
+				if isOverlappingOppositeColor():
+					capture()
+				
+				self.hasMoved = true
+				
 func searchForClosestSquare():
 	#now returns a position, not an Area2D
 	var closest_square
@@ -108,24 +108,16 @@ func capture():
 			piece = area.get_parent()
 			break
 	piece.resetMovementComponents()
-	piece.disableMovement()
-	piece.visible = false
+	#piece.disableMovement()
+	#piece.visible = false
+	piece.queue_free()
 	self.position = piece.position
 	TurnManager.switchTurn(self.color)
-	return piece
 	
 func isOverlappingOppositeColor():
-	var overlapping_areas = mousebox.get_overlapping_areas()
-	var overlapping_piece
-	if len(overlapping_areas) > 0:
-		for area in overlapping_areas: 
-			if area.collision_layer == 2:
-				overlapping_piece = area
-				break
-		if overlapping_piece != null:
-			return overlapping_piece.get_parent().color != self.color
-		else:
-			return false
+	var overlapping_piece = getOverlappingPiece()
+	if overlapping_piece != null:
+		return overlapping_piece.color != self.color
 	else:
 		return false
 
@@ -170,3 +162,10 @@ func disableMovement():
 
 func enableMovement():
 	add_child(movement)
+
+func getOverlappingPiece():
+	var overlapping_areas = mousebox.get_overlapping_areas()
+	if len(overlapping_areas) > 0:
+		for area in overlapping_areas: 
+			if area.collision_layer == 2:
+				return area.get_parent()

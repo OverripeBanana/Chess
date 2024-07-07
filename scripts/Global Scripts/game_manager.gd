@@ -20,7 +20,7 @@ func _on_black_turn_finished():
 		gameState = States.ILLEGAL
 	else:
 		gameState = States.LEGAL
-	print(gameState)
+	#print(gameState)
 
 func _on_white_turn_finished():
 	#print(Check.whiteInCheck)
@@ -30,4 +30,4 @@ func _on_white_turn_finished():
 		gameState = States.ILLEGAL
 	else:
 		gameState = States.LEGAL
-	print(gameState)
+	#print(gameState)
