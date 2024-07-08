@@ -19,6 +19,9 @@ func _ready():
 func _physics_process(_delta):
 	for ray in directions:
 		getAllObjects(ray)
+	for square in objects_collide:
+		if square not in protected_squares:
+			protected_squares.append(square)
 	for square in protected_squares:
 		protect(square)
 		

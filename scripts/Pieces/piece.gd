@@ -59,7 +59,7 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 					capture()
 				
 				self.hasMoved = true
-				
+				emit_signal("finishedMovement")
 				
 func searchForClosestSquare():
 	#now returns a position, not an Area2D

@@ -37,10 +37,10 @@ position = Vector2(250, 750)
 position = Vector2(750, 750)
 
 [node name="White Rook2" parent="Pieces/White" instance=ExtResource("6_gfixr")]
-position = Vector2(150, 750)
+position = Vector2(50, 750)
 
 [node name="White Pawn" parent="Pieces/White" instance=ExtResource("11_a8pw7")]
-position = Vector2(50, 650)
+position = Vector2(150, 650)
 
 [node name="Black" type="Node2D" parent="Pieces"]
 
@@ -60,4 +60,4 @@ position = Vector2(250, 50)
 position = Vector2(750, 50)
 
 [node name="Black Rook2" parent="Pieces/Black" instance=ExtResource("10_oqj0h")]
-position = Vector2(150, 50)
+position = Vector2(50, 50)
