@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://c4cr7dinkq0se"]
+
+[ext_resource type="Script" path="res://scripts/pieces.gd" id="1_t1etx"]
+[ext_resource type="PackedScene" uid="uid://cenp11ktwwgf0" path="res://scenes/pieces/white/white_king.tscn" id="2_pxtbs"]
+[ext_resource type="PackedScene" uid="uid://bljwfi6fsg3fi" path="res://scenes/pieces/white/white_queen.tscn" id="3_hfr28"]
+[ext_resource type="PackedScene" uid="uid://n3ktjskvvx8t" path="res://scenes/pieces/white/white_bishop.tscn" id="4_xbctu"]
+[ext_resource type="PackedScene" uid="uid://biemth6im1ve3" path="res://scenes/pieces/white/white_rook.tscn" id="5_slyuo"]
+[ext_resource type="PackedScene" uid="uid://ph38ym33by3k" path="res://scenes/pieces/white/white_pawn.tscn" id="6_dj1e5"]
+[ext_resource type="PackedScene" uid="uid://xend71lgy6mi" path="res://scenes/pieces/black/black_king.tscn" id="7_lnyrp"]
+[ext_resource type="PackedScene" uid="uid://dqu8uqp4g65j" path="res://scenes/pieces/black/black_queen.tscn" id="8_n5lwp"]
+[ext_resource type="PackedScene" uid="uid://tc7hhqrd7hbp" path="res://scenes/pieces/black/black_bishop.tscn" id="9_ga2id"]
+[ext_resource type="PackedScene" uid="uid://xwmopxqarcn" path="res://scenes/pieces/black/black_rook.tscn" id="10_lela5"]
+
+[node name="Pieces" type="Node2D"]
+script = ExtResource("1_t1etx")
+
+[node name="White" type="Node2D" parent="."]
+
+[node name="White King" parent="White" instance=ExtResource("2_pxtbs")]
+position = Vector2(450, 750)
+
+[node name="White Queen" parent="White" instance=ExtResource("3_hfr28")]
+position = Vector2(350, 750)
+
+[node name="White Bishop" parent="White" instance=ExtResource("4_xbctu")]
+position = Vector2(550, 750)
+
+[node name="White Bishop2" parent="White" instance=ExtResource("4_xbctu")]
+position = Vector2(250, 750)
+
+[node name="White Rook" parent="White" instance=ExtResource("5_slyuo")]
+position = Vector2(750, 750)
+
+[node name="White Rook2" parent="White" instance=ExtResource("5_slyuo")]
+position = Vector2(50, 750)
+
+[node name="White Pawn" parent="White" instance=ExtResource("6_dj1e5")]
+position = Vector2(150, 650)
+
+[node name="Black" type="Node2D" parent="."]
+
+[node name="Black King" parent="Black" instance=ExtResource("7_lnyrp")]
+position = Vector2(450, 50)
+
+[node name="Black Queen" parent="Black" instance=ExtResource("8_n5lwp")]
+position = Vector2(350, 50)
+
+[node name="Black Bishop" parent="Black" instance=ExtResource("9_ga2id")]
+position = Vector2(550, 50)
+
+[node name="Black Bishop2" parent="Black" instance=ExtResource("9_ga2id")]
+position = Vector2(250, 50)
+
+[node name="Black Rook" parent="Black" instance=ExtResource("10_lela5")]
+position = Vector2(750, 50)
+
+[node name="Black Rook2" parent="Black" instance=ExtResource("10_lela5")]
+position = Vector2(50, 50)

@@ -5,6 +5,7 @@ class_name Pawn
 @onready var pawn_movement = $Movement/PawnMovement
 
 var enPassant : bool = false
+var turnsMoved : int = 0
 
 func _ready():
 	initPiece()
@@ -28,7 +29,7 @@ func _process(_delta):
 	move()
 
 func promote():
-	print("promote")
+	queue_free()
 	
 func _on_finished_movement():
 	if self.color == ChessColor.chess_color.BLACK:
