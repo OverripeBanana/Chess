@@ -25,7 +25,11 @@ func _process(_delta):
 	Check.blackPieces = blackPieces
 	Check.whitePieces=  whitePieces
 
-func spawnPiece(piece, position):
+func spawnPiece(piece, pos):
 	var myPiece = piece.instantiate()
-	add_child(myPiece)
-	myPiece.global_position = position
+	if myPiece.color == 0:
+		black.add_black_child(myPiece)
+	if myPiece.color == 1:
+		white.add_white_child(myPiece)
+			
+	myPiece.global_position = pos

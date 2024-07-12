@@ -31,7 +31,7 @@ func _ready():
 	attackRight.position = Vector2(DIAGONAL_DISTANCE_FROM_PIECE, -DIAGONAL_DISTANCE_FROM_PIECE)
 	attackLeft.position = Vector2(-DIAGONAL_DISTANCE_FROM_PIECE, -DIAGONAL_DISTANCE_FROM_PIECE)
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	getAllObjects(forward)
 	protectAllObjects(attackRight)
 	protectAllObjects(attackLeft)

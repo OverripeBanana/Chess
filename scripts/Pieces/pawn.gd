@@ -6,18 +6,18 @@ class_name Pawn
 
 var enPassant : bool = false
 var turnsMoved : int = 0
+var pieces
 
 func _ready():
 	initPiece()
 	self.finishedMovement.connect(_on_finished_movement)
 	TurnManager.blackTurnFinished.connect(_on_black_turn_finished)
 	TurnManager.whiteTurnFinished.connect(_on_white_turn_finished)
+	pieces = self.get_parent().get_parent()
 	
 func _process(_delta):
-	print(enPassant)
 	if released:
 		pawn_movement.oneSquare()
-		enPassant = true
 		
 	if mostRecentSquare == null:
 		setMostRecentSquare()
@@ -30,7 +30,11 @@ func _process(_delta):
 
 func promote():
 	queue_free()
-	
+	if self.color == 0:
+		pieces.spawnPiece(pieces.black_queen, self.position)
+	elif self.color == 1:
+		pieces.spawnPiece(pieces.white_queen, self.position)
+		
 func _on_finished_movement():
 	if self.color == ChessColor.chess_color.BLACK:
 		if self.position.y == 750:
