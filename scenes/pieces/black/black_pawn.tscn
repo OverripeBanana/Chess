@@ -8,10 +8,12 @@
 radius = 33.3333
 
 [node name="Black Pawn" type="Node2D"]
+rotation = 3.14159
 script = ExtResource("1_bff6c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(14, -4)
+position = Vector2(-14, 1)
+rotation = 3.14159
 scale = Vector2(0.176136, 0.176136)
 texture = ExtResource("2_dw7nk")
 region_enabled = true
