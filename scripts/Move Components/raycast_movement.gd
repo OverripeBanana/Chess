@@ -64,3 +64,8 @@ func clearProtect(piece):
 	protected_squares.clear()
 	#if self.get_parent().get_name() == "White Queen":
 		#print(protected_squares)
+
+func getPiece(ray):
+	var piece = ray.get_collider()
+	return piece
+		

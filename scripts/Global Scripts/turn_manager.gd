@@ -1,6 +1,7 @@
 extends Node
 
 var currentTurn : ChessColor.chess_color
+var turnsElapsed : int = 0
 
 signal blackTurnFinished
 signal whiteTurnFinished

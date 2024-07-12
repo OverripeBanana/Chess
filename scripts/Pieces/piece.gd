@@ -60,7 +60,8 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				
 				self.hasMoved = true
 				emit_signal("finishedMovement")
-				
+				TurnManager.turnsElapsed += 1
+
 func searchForClosestSquare():
 	#now returns a position, not an Area2D
 	var closest_square
