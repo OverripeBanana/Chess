@@ -11,7 +11,7 @@ var released = false
 var hasMoved = false
 var mostRecentPos : Vector2
 var legal_squares = []
-var NOW_DATS_STUPID = 28000
+var NOW_DATS_STUPID = 10000
 var mostRecentSquare
 var RESET_WAIT_TIME = 0.2
 

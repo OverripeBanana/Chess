@@ -78,8 +78,9 @@ func checkForEnPassant():
 					enPassant_squares.append(square)
 	
 func oneSquare():
-	forward.target_position = Vector2.UP * ONE_SQUARE
-
+	forward.target_position = Vector2.UP * 50
+	objects_collide.clear()
+	
 func _on_finished_movement():
 	if piece.mostRecentSquare in enPassant_squares:
 		if is_instance_valid(getPiece(backward)):
