@@ -56,8 +56,9 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 				mostRecentPos = global_position
 				
 				if isOverlappingOppositeColor():
-					capture()
-				
+					self.position = getOverlappingPiece().position
+					capture(getOverlappingPiece())
+					
 				self.hasMoved = true
 				emit_signal("finishedMovement")
 				TurnManager.turnsElapsed += 1
@@ -98,17 +99,11 @@ func parentRayCast():
 func followMouse():
 	position = get_global_mouse_position()
 	
-func capture():
-	var piece
-	for area in mousebox.get_overlapping_areas():
-		if area.collision_layer == 2:
-			piece = area.get_parent()
-			break
+func capture(piece):
 	piece.resetMovementComponents()
 	#piece.disableMovement()
 	#piece.visible = false
 	piece.queue_free()
-	self.position = piece.position
 	TurnManager.switchTurn(self.color)
 	
 func isOverlappingOppositeColor():

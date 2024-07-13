@@ -45,9 +45,8 @@ func _on_finished_movement():
 			promote()
 		if self.position.y == 450 and turnsMoved == 1:
 			enPassant = true
-	
-	if released:
-		pawn_movement.oneSquare()
+
+	pawn_movement.oneSquare()
 	
 	
 func _on_black_turn_finished():
