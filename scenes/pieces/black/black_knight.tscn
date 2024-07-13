@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dt04xlxkvqds8"]
+[gd_scene load_steps=7 format=3 uid="uid://dccvofjudpnbb"]
 
-[ext_resource type="Script" path="res://scripts/Pieces/knight.gd" id="1_mkswh"]
-[ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_3g7wm"]
+[ext_resource type="Script" path="res://scripts/Pieces/knight.gd" id="1_7vjbo"]
+[ext_resource type="Texture2D" uid="uid://0q00tq3vua1t" path="res://assets/pieces.png" id="2_18kyv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hxbip"]
 radius = 33.3333
@@ -12,16 +12,15 @@ radius = 33.3333
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq7c1"]
 
-[node name="White Knight" type="Node2D"]
-script = ExtResource("1_mkswh")
-color = 1
+[node name="Black Knight" type="Node2D"]
+script = ExtResource("1_7vjbo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(5, 0)
 scale = Vector2(0.176136, 0.176136)
-texture = ExtResource("2_3g7wm")
+texture = ExtResource("2_18kyv")
 region_enabled = true
-region_rect = Rect2(1320, 0, 440, 440)
+region_rect = Rect2(1320, 440, 440, 440)
 
 [node name="Mousebox" type="Area2D" parent="."]
 collision_layer = 2

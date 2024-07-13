@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cklhii31drk7p"]
+[gd_scene load_steps=17 format=3 uid="uid://cklhii31drk7p"]
 
 [ext_resource type="PackedScene" uid="uid://c4ud5ilna8ghg" path="res://scenes/board.tscn" id="1_jtkre"]
 [ext_resource type="Script" path="res://scripts/pieces.gd" id="2_jx84a"]
@@ -10,10 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://biemth6im1ve3" path="res://scenes/pieces/white/white_rook.tscn" id="6_gfixr"]
 [ext_resource type="PackedScene" uid="uid://bljwfi6fsg3fi" path="res://scenes/pieces/white/white_queen.tscn" id="6_v47w3"]
 [ext_resource type="PackedScene" uid="uid://tc7hhqrd7hbp" path="res://scenes/pieces/black/black_bishop.tscn" id="8_vk4nh"]
+[ext_resource type="PackedScene" uid="uid://dt04xlxkvqds8" path="res://scenes/pieces/white/white_knight.tscn" id="9_tvbkl"]
 [ext_resource type="Script" path="res://scripts/black.gd" id="9_xgoft"]
 [ext_resource type="PackedScene" uid="uid://xwmopxqarcn" path="res://scenes/pieces/black/black_rook.tscn" id="10_oqj0h"]
 [ext_resource type="PackedScene" uid="uid://ph38ym33by3k" path="res://scenes/pieces/white/white_pawn.tscn" id="11_a8pw7"]
 [ext_resource type="PackedScene" uid="uid://bpn42yg3u1e3" path="res://scenes/pieces/black/black_pawn.tscn" id="12_pvfat"]
+[ext_resource type="PackedScene" uid="uid://dccvofjudpnbb" path="res://scenes/pieces/black/black_knight.tscn" id="16_a4nyv"]
 
 [node name="Main" type="Node2D"]
 
@@ -67,6 +69,12 @@ position = Vector2(650, 650)
 [node name="White Pawn8" parent="Pieces/White" instance=ExtResource("11_a8pw7")]
 position = Vector2(750, 650)
 
+[node name="White Knight" parent="Pieces/White" instance=ExtResource("9_tvbkl")]
+position = Vector2(650, 750)
+
+[node name="White Knight2" parent="Pieces/White" instance=ExtResource("9_tvbkl")]
+position = Vector2(150, 750)
+
 [node name="Black" type="Node2D" parent="Pieces"]
 script = ExtResource("9_xgoft")
 
@@ -80,7 +88,7 @@ position = Vector2(350, 50)
 position = Vector2(550, 50)
 
 [node name="Black Bishop2" parent="Pieces/Black" instance=ExtResource("8_vk4nh")]
-position = Vector2(450, 250)
+position = Vector2(250, 50)
 
 [node name="Black Rook" parent="Pieces/Black" instance=ExtResource("10_oqj0h")]
 position = Vector2(750, 50)
@@ -95,7 +103,7 @@ position = Vector2(50, 150)
 position = Vector2(150, 150)
 
 [node name="Black Pawn3" parent="Pieces/Black" instance=ExtResource("12_pvfat")]
-position = Vector2(50, 250)
+position = Vector2(250, 150)
 
 [node name="Black Pawn4" parent="Pieces/Black" instance=ExtResource("12_pvfat")]
 position = Vector2(350, 150)
@@ -111,3 +119,9 @@ position = Vector2(650, 150)
 
 [node name="Black Pawn8" parent="Pieces/Black" instance=ExtResource("12_pvfat")]
 position = Vector2(750, 150)
+
+[node name="Black Knight" parent="Pieces/Black" instance=ExtResource("16_a4nyv")]
+position = Vector2(150, 50)
+
+[node name="Black Knight2" parent="Pieces/Black" instance=ExtResource("16_a4nyv")]
+position = Vector2(650, 50)
