@@ -60,7 +60,8 @@ func _physics_process(_delta):
 		if square.occupied != piece.color and square.occupied != 2:
 			objects_collide.append(square)
 	for square in enPassant_squares:
-		objects_collide.append(square)
+		if square not in objects_collide:
+			objects_collide.append(square)
 		
 func checkForEnPassant():
 	if is_instance_valid(getPiece(left)):

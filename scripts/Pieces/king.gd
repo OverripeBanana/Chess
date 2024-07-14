@@ -8,7 +8,7 @@ var attackers = []
 
 func _ready():
 	initPiece()
-	
+
 func _process(_delta):
 	if mostRecentSquare == null:
 		setMostRecentSquare()
@@ -65,4 +65,22 @@ func isInStalemate():
 			if square.protectedByBlack and square == legal_squares.back():	
 				Check.whiteInStalemate = true
 				return true		
-		
+
+func canCastle():
+	if !hasMoved:
+		if self.color == 0:
+			if !Check.blackInCheck:
+				if searchForClosestSquare() == Vector2(650, 50):
+					#right
+					pass
+				if searchForClosestSquare() == Vector2(250, 50):
+					#left
+					pass
+		elif self.color == 1:
+			if !Check.whiteInCheck:
+				if searchForClosestSquare() == Vector2(650, 750):
+					#right
+					pass
+				if searchForClosestSquare() == Vector2(250, 750):
+					#left
+					pass
