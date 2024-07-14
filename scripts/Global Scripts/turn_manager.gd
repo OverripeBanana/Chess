@@ -16,6 +16,6 @@ func switchTurn(pieceColor):
 	if pieceColor == ChessColor.chess_color.WHITE:
 		currentTurn = ChessColor.chess_color.BLACK
 		emit_signal("whiteTurnFinished")
-		
+	
 func setTurn(color):
 	currentTurn = color

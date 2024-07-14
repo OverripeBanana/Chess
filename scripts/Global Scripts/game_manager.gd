@@ -4,6 +4,10 @@ enum States {LEGAL, ILLEGAL}
 enum WinStates {DEFAULT, BLACK_WIN, WHITE_WIN, STALEMATE}
 var gameState : States = States.LEGAL
 var winState : WinStates = WinStates.DEFAULT
+var blackLeftCastle : bool = false
+var blackRightCastle : bool = false
+var whiteLeftCastle : bool = false
+var whiteRightCastle : bool = false
 
 func _ready():
 	TurnManager.blackTurnFinished.connect(_on_black_turn_finished)

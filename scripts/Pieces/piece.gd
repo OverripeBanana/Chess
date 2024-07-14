@@ -161,3 +161,9 @@ func getOverlappingPiece():
 		for area in overlapping_areas: 
 			if area.collision_layer == 2:
 				return area.get_parent()
+
+func returnCloserObject(dist1, dist2):
+	if self.position.distance_squared_to(dist1) > self.position.distance_squared_to(dist2):
+		return dist2
+	if self.position.distance_squared_to(dist1) < self.position.distance_squared_to(dist2):
+		return dist1
