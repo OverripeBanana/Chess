@@ -13,6 +13,7 @@ var black_rook_2
 
 var leftCastle : bool = false
 var rightCastle : bool = false
+
 func _ready():
 	initPiece()
 	if self.color == 0:
@@ -21,13 +22,12 @@ func _ready():
 	if self.color == 1:
 		white_rook = $"../White Rook"
 		white_rook_2 = $"../White Rook2"
-		
+	
 func _process(_delta):
 	if mostRecentSquare == null:
 		setMostRecentSquare()
 	canCastle()
 	check()
-	print(rightCastle)
 	getAttackers()
 	
 	isInStalemate()
@@ -35,7 +35,7 @@ func _process(_delta):
 	removeOccupiedSquares()
 	move()
 	
-	if Input.is_action_just_released("left_click"):
+	if Input.is_action_just_released("left_click"):		
 		await get_tree().create_timer(RESET_WAIT_TIME).timeout
 		resetMovementComponents()
 		attackers.clear()
@@ -112,6 +112,7 @@ func canCastle():
 					#right
 					if GameManager.whiteRightCastle and !white_rook.hasMoved:
 						rightCastle = true
+						print(rightCastle)
 					else:
 						rightCastle = false
 				else:
@@ -130,3 +131,23 @@ func canCastle():
 	else:
 		rightCastle = false
 		leftCastle = false
+
+func performRightCastle():
+	if self.color == 0:
+		self.position = Vector2(250, 50)
+		black_rook_2.position = Vector2(350, 50)
+		black_rook_2.resetMovementComponents()
+	if self.color == 1:
+		self.position = Vector2(650, 750)
+		white_rook.position = Vector2(550, 750)
+		white_rook.resetMovementComponents()
+				
+func performLeftCastle():
+	if self.color == 0:
+		self.position = Vector2(650, 50)
+		black_rook.position = Vector2(550, 50)
+		black_rook.resetMovementComponents()
+	if self.color == 1:
+		self.position = Vector2(250, 750)
+		white_rook_2.position =  Vector2(350, 750)
+		white_rook_2.resetMovementComponents()
