@@ -28,7 +28,11 @@ func _process(_delta):
 	canCastle()
 	check()
 	getAttackers()
-	
+	if self.color == 0: 
+		GameManager.canBlackKingMove = canMove()
+	if self.color == 1:
+		GameManager.canWhiteKingMove = canMove()
+		
 	isInStalemate()
 	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide + castle_squares
 	removeOccupiedSquares()
@@ -139,3 +143,21 @@ func _on_finished_movement():
 	if mostRecentSquare in castle_squares:
 		performCastle()
 		castle_squares.erase(mostRecentSquare)
+
+func canMove():
+	if len(legal_squares) > 0:
+		
+		for square in legal_squares:
+			if self.color == 0:
+				if !square.protectedByWhite:
+					return true
+				if square.protectedByWhite and square == legal_squares.back():
+					return false
+			if self.color == 1: 
+				if !square.protectedByBlack:
+					return true
+				if square.protectedByBlack and square == legal_squares.back():
+					return false
+	else:
+		return false
+		

@@ -42,6 +42,9 @@ func spawnPiece(piece, pos):
 	myPiece.global_position = pos
 
 func checkForStalemate():
+	#print(GameManager.canBlackKingMove)
+	print(len(blackMoves))
 	if len(blackMoves) == 0 or len(whiteMoves) == 0:
-		GameManager.winState = GameManager.WinStates.STALEMATE
-		print("stalemate")
+		if !GameManager.canWhiteKingMove or !GameManager.canBlackKingMove:
+			GameManager.winState = GameManager.WinStates.STALEMATE
+			print("stalemate")

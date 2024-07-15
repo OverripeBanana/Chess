@@ -31,7 +31,7 @@ script = ExtResource("3_mjn8p")
 position = Vector2(450, 750)
 
 [node name="White Queen" parent="Pieces/White" instance=ExtResource("6_v47w3")]
-position = Vector2(350, 750)
+position = Vector2(450, 450)
 
 [node name="White Bishop" parent="Pieces/White" instance=ExtResource("5_l1n4t")]
 position = Vector2(550, 750)
@@ -52,7 +52,7 @@ position = Vector2(50, 650)
 position = Vector2(150, 650)
 
 [node name="White Pawn3" parent="Pieces/White" instance=ExtResource("11_a8pw7")]
-position = Vector2(250, 650)
+position = Vector2(250, 550)
 
 [node name="White Pawn4" parent="Pieces/White" instance=ExtResource("11_a8pw7")]
 position = Vector2(350, 650)
@@ -79,7 +79,7 @@ position = Vector2(150, 750)
 script = ExtResource("9_xgoft")
 
 [node name="Black King" parent="Pieces/Black" instance=ExtResource("6_devlt")]
-position = Vector2(450, 50)
+position = Vector2(50, 450)
 
 [node name="Black Queen" parent="Pieces/Black" instance=ExtResource("4_hux6i")]
 position = Vector2(350, 50)

@@ -8,6 +8,8 @@ var blackLeftCastle : bool = false
 var blackRightCastle : bool = false
 var whiteLeftCastle : bool = false
 var whiteRightCastle : bool = false
+var canBlackKingMove : bool = true
+var canWhiteKingMove : bool = true
 
 func _ready():
 	TurnManager.blackTurnFinished.connect(_on_black_turn_finished)
