@@ -2,19 +2,18 @@ extends Piece
 
 class_name King
 
+@onready var board = $"../../../Board"
 @onready var diagonal_movement = $Movement/DiagonalMovement
 @onready var horizontal_movement = $Movement/HorizontalMovement
 var attackers = []
-
+var castle_squares = []
 var white_rook
 var white_rook_2
 var black_rook
 var black_rook_2
 
-var leftCastle : bool = false
-var rightCastle : bool = false
-
 func _ready():
+	self.finishedMovement.connect(_on_finished_movement)
 	initPiece()
 	if self.color == 0:
 		black_rook = $"../Black Rook"
@@ -31,7 +30,7 @@ func _process(_delta):
 	getAttackers()
 	
 	isInStalemate()
-	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide
+	legal_squares = horizontal_movement.objects_collide + diagonal_movement.objects_collide + castle_squares
 	removeOccupiedSquares()
 	move()
 	
@@ -84,70 +83,59 @@ func canCastle():
 		
 		if self.color == 0:
 			if !Check.blackInCheck:
-				if returnCloserObject(searchForClosestSquare(), Vector2(650, 50)) == Vector2(650, 50):
-					#right
 					if GameManager.blackRightCastle and !black_rook_2.hasMoved:
-						rightCastle = true
+						#right
+						if board.white_square_2 not in castle_squares:
+							castle_squares.append(board.white_square_2)
 					else:
-						rightCastle = false
-				else:
-					rightCastle = false
-					
-				if returnCloserObject(searchForClosestSquare(), Vector2(250, 50)) == Vector2(250, 50):
-					#left
+						if mostRecentSquare != board.white_square_2:
+							castle_squares.erase(board.white_square_2)
+						
 					if GameManager.blackLeftCastle and !black_rook.hasMoved:
-						leftCastle = true
+						#left		
+						if board.white_square_4 not in castle_squares:
+							castle_squares.append(board.white_square_4)
 					else:
-						leftCastle = false
-				else:
-					leftCastle = false
-					
-			else:
-				rightCastle = false
-				leftCastle = false
-				
+						if mostRecentSquare != board.white_square_4:
+							castle_squares.erase(board.white_square_4)
+						
 		if self.color == 1:
 			if !Check.whiteInCheck:
-				if returnCloserObject(searchForClosestSquare(), Vector2(650, 750)) == Vector2(650, 750):
-					#right
 					if GameManager.whiteRightCastle and !white_rook.hasMoved:
-						rightCastle = true
-						print(rightCastle)
+						#right
+						if board.black_square_24 not in castle_squares:
+							castle_squares.append(board.black_square_24)
 					else:
-						rightCastle = false
-				else:
-					rightCastle = false
-				if returnCloserObject(searchForClosestSquare(), Vector2(250, 750)) == Vector2(250, 750):
-					#left
+						if mostRecentSquare != board.black_square_24:
+							castle_squares.erase(board.black_square_24)
+						
 					if GameManager.whiteLeftCastle and !white_rook_2.hasMoved:
-						leftCastle = true
+						#left
+						if board.black_square_22 not in castle_squares:
+							castle_squares.append(board.black_square_22)
 					else:
-						leftCastle = false
-				else:
-					leftCastle = false
-			else:
-				rightCastle = false
-				leftCastle = false
-	else:
-		rightCastle = false
-		leftCastle = false
+						if mostRecentSquare != board.black_square_22:
+							castle_squares.erase(board.black_square_22)
+						
+func performCastle():
+	if self.color == 0:
+		if self.position == Vector2(250, 50):
+			black_rook_2.position = Vector2(350, 50)
+			black_rook_2.resetMovementComponents()
+		if self.position == Vector2(650, 50):
+			black_rook.position = Vector2(550, 50)
+			black_rook.resetMovementComponents()
+			
+	if self.color == 1:
+		if self.position == Vector2(650, 750):
+			white_rook.position = Vector2(550, 750)
+			white_rook.resetMovementComponents()
+		if self.position == Vector2(250, 750):
+			white_rook_2.position =  Vector2(350, 750)
+			white_rook_2.resetMovementComponents()			
 
-func performRightCastle():
-	if self.color == 0:
-		self.position = Vector2(250, 50)
-		black_rook_2.position = Vector2(350, 50)
-		black_rook_2.resetMovementComponents()
-	if self.color == 1:
-		self.position = Vector2(650, 750)
-		white_rook.position = Vector2(550, 750)
-		white_rook.resetMovementComponents()
-				
-func performLeftCastle():
-	if self.color == 0:
-		self.position = Vector2(650, 50)
-		black_rook.position = Vector2(550, 50)
-		black_rook.resetMovementComponents()
-	if self.color == 1:
-		self.position = Vector2(250, 750)
-		white_rook_2.position =  Vector2(350, 750)
-		white_rook_2.resetMovementComponents()
+
+func _on_finished_movement():
+	if mostRecentSquare in castle_squares:
+		performCastle()
+		castle_squares.erase(mostRecentSquare)

@@ -34,7 +34,7 @@ position = Vector2(450, 750)
 position = Vector2(350, 750)
 
 [node name="White Bishop" parent="Pieces/White" instance=ExtResource("5_l1n4t")]
-position = Vector2(550, 550)
+position = Vector2(550, 750)
 
 [node name="White Bishop2" parent="Pieces/White" instance=ExtResource("5_l1n4t")]
 position = Vector2(250, 750)
@@ -70,7 +70,7 @@ position = Vector2(650, 650)
 position = Vector2(750, 650)
 
 [node name="White Knight" parent="Pieces/White" instance=ExtResource("9_tvbkl")]
-position = Vector2(650, 550)
+position = Vector2(650, 750)
 
 [node name="White Knight2" parent="Pieces/White" instance=ExtResource("9_tvbkl")]
 position = Vector2(150, 750)
