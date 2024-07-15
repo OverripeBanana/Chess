@@ -16,11 +16,15 @@ func _ready():
 	self.finishedMovement.connect(_on_finished_movement)
 	initPiece()
 	if self.color == 0:
-		black_rook = $"../Black Rook"
-		black_rook_2 = $"../Black Rook2"
+		if is_instance_valid(black_rook):
+			black_rook = $"../Black Rook"
+		if is_instance_valid(black_rook_2):
+			black_rook_2 = $"../Black Rook2"
 	if self.color == 1:
-		white_rook = $"../White Rook"
-		white_rook_2 = $"../White Rook2"
+		if is_instance_valid(white_rook):
+			white_rook = $"../White Rook"
+		if is_instance_valid(white_rook_2):
+			white_rook_2 = $"../White Rook2"
 	
 func _process(_delta):
 	if mostRecentSquare == null:
@@ -87,6 +91,7 @@ func canCastle():
 		
 		if self.color == 0:
 			if !Check.blackInCheck:
+				if is_instance_valid(black_rook_2) and is_instance_valid(black_rook):
 					if GameManager.blackRightCastle and !black_rook_2.hasMoved:
 						#right
 						if board.white_square_2 not in castle_squares:
@@ -105,6 +110,7 @@ func canCastle():
 						
 		if self.color == 1:
 			if !Check.whiteInCheck:
+				if is_instance_valid(white_rook_2) and is_instance_valid(white_rook):
 					if GameManager.whiteRightCastle and !white_rook.hasMoved:
 						#right
 						if board.black_square_24 not in castle_squares:

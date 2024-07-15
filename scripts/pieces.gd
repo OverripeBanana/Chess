@@ -27,9 +27,18 @@ func _process(_delta):
 	Check.blackPieces = blackPieces
 	Check.whitePieces=  whitePieces
 	for piece in blackPieces:
-		blackMoves.append(piece.legal_squares)
+		if "King" not in piece.get_name():
+			for square in piece.legal_squares:
+				if square not in blackMoves:
+					blackMoves.append(square)
 	for piece in whitePieces:
-		whiteMoves.append(piece.legal_squares)
+		if "King" not in piece.get_name():
+			for square in piece.legal_squares:
+				if square not in whiteMoves:
+					whiteMoves.append(square)
+	if Input.is_action_just_released("left_click"):
+		blackMoves.clear()
+		whiteMoves.clear()
 	checkForStalemate()
 	
 func spawnPiece(piece, pos):
@@ -43,7 +52,7 @@ func spawnPiece(piece, pos):
 
 func checkForStalemate():
 	#print(GameManager.canBlackKingMove)
-	print(len(blackMoves))
+	#print(len(blackMoves))
 	if len(blackMoves) == 0 or len(whiteMoves) == 0:
 		if !GameManager.canWhiteKingMove or !GameManager.canBlackKingMove:
 			GameManager.winState = GameManager.WinStates.STALEMATE
