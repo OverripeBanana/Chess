@@ -7,6 +7,8 @@ class_name Pieces
 
 var blackPieces = []
 var whitePieces = []
+var blackMoves = []
+var whiteMoves = []
 
 #white
 var white_king = preload("res://scenes/pieces/white/white_king.tscn")
@@ -24,7 +26,12 @@ func _process(_delta):
 	whitePieces = white.get_children()
 	Check.blackPieces = blackPieces
 	Check.whitePieces=  whitePieces
-
+	for piece in blackPieces:
+		blackMoves.append(piece.legal_squares)
+	for piece in whitePieces:
+		whiteMoves.append(piece.legal_squares)
+	checkForStalemate()
+	
 func spawnPiece(piece, pos):
 	var myPiece = piece.instantiate()
 	if myPiece.color == 0:
@@ -33,3 +40,8 @@ func spawnPiece(piece, pos):
 		white.add_white_child(myPiece)
 			
 	myPiece.global_position = pos
+
+func checkForStalemate():
+	if len(blackMoves) == 0 or len(whiteMoves) == 0:
+		GameManager.winState = GameManager.WinStates.STALEMATE
+		print("stalemate")

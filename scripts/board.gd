@@ -17,7 +17,7 @@ extends Node2D
 
 
 
-func _process(delta):
+func _process(_delta):
 	GameManager.whiteLeftCastle = white_square_21.occupied == 2 and black_square_22.occupied == 2 and white_square_33.occupied == 2
 	GameManager.whiteRightCastle = white_square_23.occupied == 2 and black_square_24.occupied == 2
 	

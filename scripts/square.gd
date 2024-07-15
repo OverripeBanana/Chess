@@ -18,7 +18,9 @@ func _process(_delta):
 	#showProtects()
 	if Input.is_action_just_released("left_click"):
 		protectors.clear()
-		
+		protectedByBlack = false
+		protectedByWhite = false
+
 func showProtects():
 	if protectedByBlack and protectedByWhite:
 		color_rect.color = Color(0, 1, 0, 1)
