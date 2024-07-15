@@ -16,14 +16,10 @@ func _ready():
 	self.finishedMovement.connect(_on_finished_movement)
 	initPiece()
 	if self.color == 0:
-		if is_instance_valid(black_rook):
 			black_rook = $"../Black Rook"
-		if is_instance_valid(black_rook_2):
 			black_rook_2 = $"../Black Rook2"
 	if self.color == 1:
-		if is_instance_valid(white_rook):
 			white_rook = $"../White Rook"
-		if is_instance_valid(white_rook_2):
 			white_rook_2 = $"../White Rook2"
 	
 func _process(_delta):
@@ -87,6 +83,7 @@ func isInStalemate():
 				return true		
 
 func canCastle():
+
 	if !hasMoved:
 		
 		if self.color == 0:

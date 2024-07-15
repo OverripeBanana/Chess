@@ -46,6 +46,7 @@ func _on_mousebox_input_event(_viewport, event, _shape_idx):
 					print("you can't do that! stupid butt nugget...")
 					TurnManager.setTurn(self.color)
 					returnToRecentPos()
+					setMostRecentSquare()
 					#if capturedPiece != null:
 						#capturedPiece.enableMovement()
 						#capturedPiece.visible = true
