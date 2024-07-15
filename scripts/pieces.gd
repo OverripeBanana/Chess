@@ -56,4 +56,4 @@ func checkForStalemate():
 	if len(blackMoves) == 0 or len(whiteMoves) == 0:
 		if !GameManager.canWhiteKingMove or !GameManager.canBlackKingMove:
 			GameManager.winState = GameManager.WinStates.STALEMATE
-			print("stalemate")
+			get_tree().quit()
